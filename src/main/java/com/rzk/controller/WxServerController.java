@@ -25,10 +25,19 @@ public class WxServerController {
     @Resource
     private Environment environment;
 
+    /**
+     *
+     * @param signature
+     * @param timestamp
+     * @param nonce
+     * @param echostr
+     * @return
+     */
     @RequestMapping("validate")
     public String validate(String signature, String timestamp, String nonce, String echostr) {
 
         logger.info("参数{}:"+signature+"  "+timestamp+"  "+ nonce+"  "+echostr);
+        logger.info("Token参数{}:"+environment.getProperty("wx.Token"));
         //排序
         String sort = signUtil.sort(
                 environment.getProperty("wx.Token"),
