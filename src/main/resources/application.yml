@@ -1,0 +1,11 @@
+server:
+  port: 80
+  servlet:
+    context-path: /wxserver
+
+wx:
+  signature:
+  timestamp:
+  nonce:
+  echostr:
+  Token: rzk
