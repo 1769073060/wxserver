@@ -1,12 +1,11 @@
 package com.rzk.util;
 
-import org.springframework.context.annotation.Configuration;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-@Configuration
+
 public class SignUtil {
     /**
      * 排序方法
@@ -16,7 +15,8 @@ public class SignUtil {
      * @param nonce
      * @return
      */
-    public String sort(String token, String timestamp, String nonce) {
+    public static String sort(String token, String timestamp, String nonce) {
+        //将token, timestamp, nonce三个参数进行字典序排序
         String[] strArray = {token, timestamp, nonce};
         Arrays.sort(strArray);
         StringBuilder sb = new StringBuilder();
@@ -33,7 +33,7 @@ public class SignUtil {
      * @param str 需要加密的字符串
      * @return 加密后的内容
      */
-    public String sha1(String str) {
+    public static String sha1(String str) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
             digest.update(str.getBytes());
