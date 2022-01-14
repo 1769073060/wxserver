@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 
 public class SignUtil {
+
     /**
      * 排序方法
      *

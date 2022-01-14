@@ -1,13 +1,28 @@
 package com.rzk.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.rzk.pojo.Token;
+import com.rzk.util.HttpClient;
+import com.rzk.util.HttpConstant;
 import com.rzk.util.SignUtil;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 
 @RestController
@@ -27,7 +42,7 @@ public class WxServerController {
      * @param echostr
      * @return
      */
-    @RequestMapping("validate")
+    @GetMapping(value = "validate" )
     public String validate(String signature, String timestamp, String nonce, String echostr) {
 
         logger.info("参数{}:"+signature+"  "+timestamp+"  "+ nonce+"  "+echostr);
@@ -51,5 +66,23 @@ public class WxServerController {
             logger.info("检验签名失败：{}");
             return null;
         }
+    }
+
+
+    @PostMapping(value = "validate" )
+    public String validate() {
+        return null;
+    }
+
+
+    public String AccessToken(){
+        Token token = new Token();
+        //使用httpclient请求
+        String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", environment.getProperty("wx.appid")).replace("APPSECRET", environment.getProperty("wx.secret")));
+        //转成json对象
+        JSONObject json = JSON.parseObject(result);
+        token.setAccessToken(String.valueOf(json.get("access_token")));
+
+        return token.getAccessToken();
     }
 }
