@@ -7,6 +7,7 @@ import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
 import com.rzk.util.SignUtil;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.BufferedHttpEntity;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 
@@ -42,7 +44,7 @@ public class WxServerController {
      * @param echostr
      * @return
      */
-    @GetMapping(value = "validate" )
+    @GetMapping(value = "validate")
     public String validate(String signature, String timestamp, String nonce, String echostr) {
 
         logger.info("参数{}:"+signature+"  "+timestamp+"  "+ nonce+"  "+echostr);
@@ -70,11 +72,12 @@ public class WxServerController {
 
 
     @PostMapping(value = "validate" )
-    public String validate() {
+    public String validate(HttpServletRequest httpServletRequest) {
+        logger.info("接收到的消息{}:"+httpServletRequest);
         return null;
     }
 
-
+    @GetMapping(value = "accessToken")
     public String AccessToken(){
         Token token = new Token();
         //使用httpclient请求
