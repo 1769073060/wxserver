@@ -85,7 +85,6 @@ public class WxServerController {
         //转成json对象
         JSONObject json = JSON.parseObject(result);
         token.setAccessToken(String.valueOf(json.get("access_token")));
-
         return token.getAccessToken();
     }
 }
