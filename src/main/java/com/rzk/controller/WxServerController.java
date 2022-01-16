@@ -87,4 +87,17 @@ public class WxServerController {
         token.setAccessToken(String.valueOf(json.get("access_token")));
         return token.getAccessToken();
     }
+
+    public static void main(String[] args) {
+        Token token = new Token();
+        //使用httpclient请求
+        String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", "wx9b012c8a72024068").replace("APPSECRET", "0546d6d0bd51348b77a9b831518688db"));
+        //转成json对象
+        JSONObject json = JSON.parseObject(result);
+        token.setAccessToken(String.valueOf(json.get("access_token")));
+        token.setAccessToken(String.valueOf(json.get("expires_in")));
+        System.out.println(json);
+        System.out.println(token.toString());
+    }
+
 }
