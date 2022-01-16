@@ -38,4 +38,4 @@ spring:
       #主节点名称
       master: mymaster
       #节点
-      nodes:
+      nodes: 
