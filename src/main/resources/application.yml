@@ -9,20 +9,20 @@ wx:
   nonce:
   echostr:
   Token: rzk
-  appid: wx9b012c8a72024068
-  secret: 0546d6d0bd51348b77a9b831518688db
+  appid:
+  secret:
 
 spring:
   redis:
     #超过时间
     timeout: 10000ms
     #地址
-    host: 120.79.7.36
+    host:
     #端口
-    port: 6381
+    port: 6382
     #数据库
     database: 0
-    password: rzkruizhukai123.
+    password:
     lettuce:
       pool:
         #最大连接数 默认8
@@ -38,4 +38,4 @@ spring:
       #主节点名称
       master: mymaster
       #节点
-      nodes: 120.55.192.186:26381,120.55.192.186:26382,120.55.192.186:26383
+      nodes:

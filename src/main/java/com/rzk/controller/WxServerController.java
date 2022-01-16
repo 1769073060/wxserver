@@ -2,6 +2,7 @@ package com.rzk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.rzk.config.RedisConfig;
 import com.rzk.pojo.Token;
 import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
@@ -16,7 +17,10 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +39,8 @@ public class WxServerController {
 
     @Resource
     private Environment environment;
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     /**
      *
@@ -85,19 +91,23 @@ public class WxServerController {
         //转成json对象
         JSONObject json = JSON.parseObject(result);
         token.setAccessToken(String.valueOf(json.get("access_token")));
+        token.setExpiresIn(String.valueOf(json.get("expires_in")));
+        logger.info("Token{}:"+token.toString());
+        ValueOperations<String, Object> opsForValue = redisTemplate.opsForValue();
+        System.out.println("============"+opsForValue.get("a1"));
+        opsForValue.set("a2","2");
+        System.out.println("============"+opsForValue.get("a2"));
+
+        System.out.println("============");
+
+        opsForValue.set("accessToken",token.getAccessToken());
+        opsForValue.set("expiresIn",token.getExpiresIn());
+        logger.info("accessToken{}:"+opsForValue.get("accessToken"));
+        logger.info("expiresIn{}:"+opsForValue.get("expiresIn"));
+
         return token.getAccessToken();
     }
 
-    public static void main(String[] args) {
-        Token token = new Token();
-        //使用httpclient请求
-        String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", "wx9b012c8a72024068").replace("APPSECRET", "0546d6d0bd51348b77a9b831518688db"));
-        //转成json对象
-        JSONObject json = JSON.parseObject(result);
-        token.setAccessToken(String.valueOf(json.get("access_token")));
-        token.setAccessToken(String.valueOf(json.get("expires_in")));
-        System.out.println(json);
-        System.out.println(token.toString());
-    }
+
 
 }
