@@ -106,8 +106,6 @@ public class WxServerController {
         String expiresIn = redisTemplate.getExpire("expiresIn").toString();
         logger.info("accessToken{}:"+accessToken);
         logger.info("expiresIn{}:"+expiresIn);
-        logger.info("accessToken{}:"+redisTemplate.opsForValue().get("accessToken"));
-        logger.info("expiresIn{}:"+redisTemplate.opsForValue().get("expiresIn"));
 
         return token.getAccessToken();
     }
