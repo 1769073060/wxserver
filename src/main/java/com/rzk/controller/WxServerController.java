@@ -89,7 +89,7 @@ public class WxServerController {
     public String getAccessToken(){
         Token token = new Token();
         //如果不等于空 或者小于600秒
-        if (redisTemplate.getExpire("expires_in")<600||redisTemplate.getExpire("expires_in")==-1){
+        if (redisTemplate.getExpire("expires_in")<600||redisTemplate.getExpire("expires_in")==null){
 
             //使用httpclient请求
             String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", environment.getProperty("wx.appid")).replace("APPSECRET", environment.getProperty("wx.secret")));
@@ -99,11 +99,13 @@ public class WxServerController {
             System.out.println(json);
             token.setAccessToken(String.valueOf(json.get("access_token")));
             token.setExpiresIn((Integer) json.get("expires_in"));
+            System.out.println(json.get("expires_in"));
+            System.out.println(token.getExpiresIn());
             redisTemplate.opsForValue().set("accessToken",json.get("access_token"));
-            redisTemplate.expire("expiresIn",token.getExpiresIn(), TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set("expiresIn",json.get("expires_in"),7200, TimeUnit.SECONDS);
         }
         String accessToken = redisTemplate.opsForValue().get("accessToken").toString();
-        String expiresIn = redisTemplate.getExpire("expiresIn").toString();
+        Long expiresIn = redisTemplate.getExpire("expiresIn");
         logger.info("accessToken{}:"+accessToken);
         logger.info("expiresIn{}:"+expiresIn);
 
