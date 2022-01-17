@@ -7,6 +7,7 @@ import com.rzk.pojo.Token;
 import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
 import com.rzk.util.SignUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpRequest;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -84,26 +86,28 @@ public class WxServerController {
     }
 
     @GetMapping(value = "accessToken")
-    public String AccessToken(){
+    public String getAccessToken(){
         Token token = new Token();
-        //使用httpclient请求
-        String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", environment.getProperty("wx.appid")).replace("APPSECRET", environment.getProperty("wx.secret")));
-        //转成json对象
-        JSONObject json = JSON.parseObject(result);
-        token.setAccessToken(String.valueOf(json.get("access_token")));
-        token.setExpiresIn(String.valueOf(json.get("expires_in")));
-        logger.info("Token{}:"+token.toString());
-        ValueOperations<String, Object> opsForValue = redisTemplate.opsForValue();
-        System.out.println("============"+opsForValue.get("a1"));
-        opsForValue.set("a2","2");
-        System.out.println("============"+opsForValue.get("a2"));
+        //如果不等于空 或者小于600秒
+        if (redisTemplate.getExpire("expires_in")<600||redisTemplate.getExpire("expires_in")==-1){
 
-        System.out.println("============");
+            //使用httpclient请求
+            String result = HttpClient.doGetRequest(HttpConstant.API_URI.replace("APPID", environment.getProperty("wx.appid")).replace("APPSECRET", environment.getProperty("wx.secret")));
 
-        opsForValue.set("accessToken",token.getAccessToken());
-        opsForValue.set("expiresIn",token.getExpiresIn());
-        logger.info("accessToken{}:"+opsForValue.get("accessToken"));
-        logger.info("expiresIn{}:"+opsForValue.get("expiresIn"));
+            //转成json对象
+            JSONObject json = JSON.parseObject(result);
+            System.out.println(json);
+            token.setAccessToken(String.valueOf(json.get("access_token")));
+            token.setExpiresIn((Integer) json.get("expires_in"));
+            redisTemplate.opsForValue().set("accessToken",json.get("access_token"));
+            redisTemplate.expire("expiresIn",token.getExpiresIn(), TimeUnit.SECONDS);
+        }
+        String accessToken = redisTemplate.opsForValue().get("accessToken").toString();
+        String expiresIn = redisTemplate.getExpire("expiresIn").toString();
+        logger.info("accessToken{}:"+accessToken);
+        logger.info("expiresIn{}:"+expiresIn);
+        logger.info("accessToken{}:"+redisTemplate.opsForValue().get("accessToken"));
+        logger.info("expiresIn{}:"+redisTemplate.opsForValue().get("expiresIn"));
 
         return token.getAccessToken();
     }
