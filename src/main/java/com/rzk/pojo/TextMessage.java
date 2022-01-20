@@ -22,6 +22,9 @@ public class TextMessage extends BaseMessage{
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     @Override
     public String toString() {
