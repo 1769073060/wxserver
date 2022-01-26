@@ -1,5 +1,10 @@
 package com.rzk.pojo;
 
+
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Map;
 
 /**
@@ -10,72 +15,35 @@ import java.util.Map;
  * @CreateTime : 21/1/2022 上午2:25
  * @Version : v1.0
  */
+@XmlRootElement(name = "xml")
 public class MusicMessage extends BaseMessage{
 
-    private String title;
-    private String description;
-    private String musicURL;
-    private String hQMusicUrl;
-    private String thumbMediaId;
+    @XmlElement(name = "Music")
+    private Music music;
 
-    public String getTitle() {
-        return title;
+    public Music getMusic() {
+        return music;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    @XmlTransient
+    public void setMusic(Music music) {
+        this.music = music;
     }
 
-    public String getDescription() {
-        return description;
+    public MusicMessage() {
+
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getMusicURL() {
-        return musicURL;
-    }
-
-    public void setMusicURL(String musicURL) {
-        this.musicURL = musicURL;
-    }
-
-    public String gethQMusicUrl() {
-        return hQMusicUrl;
-    }
-
-    public void sethQMusicUrl(String hQMusicUrl) {
-        this.hQMusicUrl = hQMusicUrl;
-    }
-
-    public String getThumbMediaId() {
-        return thumbMediaId;
-    }
-
-    public void setThumbMediaId(String thumbMediaId) {
-        this.thumbMediaId = thumbMediaId;
-    }
-
-    public MusicMessage(Map<String, String> requestMap, String title, String description, String musicURL, String hQMusicUrl, String thumbMediaId) {
+    public MusicMessage(Map<String, String> requestMap, Music music) {
         super(requestMap);
-        this.title = title;
-        this.description = description;
-        this.musicURL = musicURL;
-        this.hQMusicUrl = hQMusicUrl;
-        this.thumbMediaId = thumbMediaId;
         setMsgType("music");
+        this.music = music;
     }
 
     @Override
     public String toString() {
         return "MusicMessage{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", musicURL='" + musicURL + '\'' +
-                ", hQMusicUrl='" + hQMusicUrl + '\'' +
-                ", thumbMediaId='" + thumbMediaId + '\'' +
+                "music=" + music +
                 '}';
     }
 }

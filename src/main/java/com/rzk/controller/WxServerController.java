@@ -9,16 +9,6 @@ import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
 import com.rzk.util.MsgUtil;
 import com.rzk.util.SignUtil;
-import org.apache.commons.lang.StringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.BufferedHttpEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +36,8 @@ public class WxServerController {
     private Environment environment;
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
+    @Resource
+    private WxService wxService;
 
     /**
      *
@@ -81,7 +73,8 @@ public class WxServerController {
         }
     }
 
-    @PostMapping(value = "validate" )
+
+    @PostMapping(value = "validate")
     public String validate(HttpServletRequest httpServletRequest) {
         logger.info("接收到的消息{}:"+httpServletRequest);
         // xml格式的消息数据
@@ -91,35 +84,44 @@ public class WxServerController {
         try {
             // 调用parseXml方法解析请求消息
             Map<String,String> requestMap = MsgUtil.parseXml(httpServletRequest);
-            WxService.getResponse(requestMap);
+            respContent = wxService.getResponse(requestMap);
             // 消息类型
-            String msgType = (String) requestMap.get(WxConsts.MsgType);
-            String mes = null;
+            logger.info("controller======>{}"+respContent);
 
-            return respXml;
+            return respContent;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("controller======>{}"+respXml);
         return "";
     }
 
-    @PutMapping(value = "validate" )
-    public String validate(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        logger.info("接收到的消息{}:"+httpServletRequest);
-        // xml格式的消息数据
-        String respXml = null;
-        // 默认返回的文本消息内容
-        String respContent;
-        try {
-            // 调用parseXml方法解析请求消息
-            Map<String,String> requestMap = MsgUtil.parseXml(httpServletRequest);
-            // 消息类型
-            String msgType = (String) requestMap.get(WxConsts.MsgType);
-            String mes = null;
-            // 文本消息
-            if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_TEXT)) {
-                mes =requestMap.get(WxConsts.Content).toString();
-                if(mes!=null&&mes.length()<2){
+
+    /**
+     *
+     * 返回消息
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @return
+     */
+
+//    @PutMapping(value = "validate" )
+//    public String validate(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+//        logger.info("接收到的消息{}:"+httpServletRequest);
+//        // xml格式的消息数据
+//        String respXml = null;
+//        // 默认返回的文本消息内容
+//        String respContent;
+//        try {
+//            // 调用parseXml方法解析请求消息
+//            Map<String,String> requestMap = MsgUtil.parseXml(httpServletRequest);
+//            // 消息类型
+//            String msgType = (String) requestMap.get(WxConsts.MsgType);
+//            String mes = null;
+//            // 文本消息
+//            if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_TEXT)) {
+//                mes =requestMap.get(WxConsts.Content).toString();
+//                if(mes!=null&&mes.length()<2){
                     /**
                     List<ArticleItem> items = new ArrayList<>();
                     ArticleItem item = new ArticleItem();
@@ -152,7 +154,8 @@ public class WxServerController {
 
                     respXml = MsgUtil.sendArticleMsg(requestMap, items);
                      **/
-                }else if("我的信息".equals(mes)){
+
+//                }else if("我的信息".equals(mes)){*/
                     /**
                     Map<String, String> userInfo = getUserInfo(requestMap.get(WxConsts.FromUserName));
                     System.out.println(userInfo.toString());
@@ -171,69 +174,71 @@ public class WxServerController {
 
                     respXml = MsgUtil.sendArticleMsg(requestMap, items);
                     **/
-                }
-            }
-            // 图片消息
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_IMAGE)) {
-                respContent = "您发送的是图片消息！";
-                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-            }
-            // 语音消息
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_VOICE)) {
-                respContent = "您发送的是语音消息！";
-                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-            }
-            // 视频消息
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_VIDEO)) {
-                respContent = "您发送的是视频消息！";
-                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-            }
-            // 地理位置消息
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_LOCATION)) {
-                respContent = "您发送的是地理位置消息！";
-                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-            }
-            // 链接消息
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_LINK)) {
-                respContent = "您发送的是链接消息！";
-                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-            }
-            // 事件推送
-            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_EVENT)) {
-                // 事件类型
-                String eventType = (String) requestMap.get(WxConsts.Event);
-                // 关注
-                if (eventType.equals(WxConsts.EVENT_TYPE_SUBSCRIBE)) {
-                    respContent = "谢谢您的关注！";
-                    respXml = MsgUtil.sendTextMsg(requestMap, respContent);
-                }
-                // 取消关注
-                else if (eventType.equals(WxConsts.EVENT_TYPE_UNSUBSCRIBE)) {
-                    // TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
-                }
-                // 扫描带参数二维码
-                else if (eventType.equals(WxConsts.EVENT_TYPE_SCAN)) {
-                    // TODO 处理扫描带参数二维码事件
-                }
-                // 上报地理位置
-                else if (eventType.equals(WxConsts.EVENT_TYPE_LOCATION)) {
-                    // TODO 处理上报地理位置事件
-                }
-                // 自定义菜单
-                else if (eventType.equals(WxConsts.EVENT_TYPE_CLICK)) {
-                    // TODO 处理菜单点击事件
-                }
-            }
-            mes = mes == null ? "不知道你在干嘛" : mes;
-            if(respXml == null)
-                respXml = MsgUtil.sendTextMsg(requestMap, mes);
-            System.out.println(respXml);
-            return respXml;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
+
+//                }
+//            }
+//            // 图片消息
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_IMAGE)) {
+//                respContent = "您发送的是图片消息！";
+//                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//            }
+//            // 语音消息
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_VOICE)) {
+//                respContent = "您发送的是语音消息！";
+//                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//            }
+//            // 视频消息
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_VIDEO)) {
+//                respContent = "您发送的是视频消息！";
+//                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//            }
+//            // 地理位置消息
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_LOCATION)) {
+//                respContent = "您发送的是地理位置消息！";
+//                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//            }
+//            // 链接消息
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_LINK)) {
+//                respContent = "您发送的是链接消息！";
+//                respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//            }
+//            // 事件推送
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_EVENT)) {
+//                // 事件类型
+//                String eventType = (String) requestMap.get(WxConsts.Event);
+//                // 关注
+//                if (eventType.equals(WxConsts.EVENT_TYPE_SUBSCRIBE)) {
+//                    respContent = "谢谢您的关注！";
+//                    respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//                }
+//                // 取消关注
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_UNSUBSCRIBE)) {
+//                    // TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
+//                }
+//                // 扫描带参数二维码
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_SCAN)) {
+//                    // TODO 处理扫描带参数二维码事件
+//                }
+//                // 上报地理位置
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_LOCATION)) {
+//                    // TODO 处理上报地理位置事件
+//                }
+//                // 自定义菜单
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_CLICK)) {
+//                    // TODO 处理菜单点击事件
+//                }
+//            }
+//            mes = mes == null ? "不知道你在干嘛" : mes;
+//            if(respXml == null)
+//                respXml = MsgUtil.sendTextMsg(requestMap, mes);
+//            System.out.println(respXml);
+//            return respXml;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+
 
     @GetMapping(value = "accessToken")
     public String getAccessToken(){

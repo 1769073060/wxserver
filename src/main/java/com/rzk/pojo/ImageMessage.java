@@ -1,7 +1,10 @@
 package com.rzk.pojo;
 
-import lombok.Data;
 
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Map;
 
 /**
@@ -12,28 +15,34 @@ import java.util.Map;
  * @CreateTime : 21/1/2022 上午2:15
  * @Version : v1.0
  */
-
+@XmlRootElement(name = "xml")
 public class ImageMessage extends BaseMessage{
+    @XmlElement(name = "Image")
+    private Image image;
 
-    private String mediaId;
+    public Image getImage() {
+        return image;
+    }
 
-    public ImageMessage(Map<String, String> requestMap, String mediaId) {
+    @XmlTransient
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public ImageMessage() {
+    }
+
+
+    public ImageMessage(Map<String, String> requestMap, Image image) {
         super(requestMap);
-        this.mediaId = mediaId;
-    }
-
-    public String getMediaId() {
-        return mediaId;
-    }
-
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
+        setMsgType("image");
+        this.image = image;
     }
 
     @Override
     public String toString() {
         return "ImageMessage{" +
-                "mediaId='" + mediaId + '\'' +
+                "image=" + image +
                 '}';
     }
 }

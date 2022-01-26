@@ -1,5 +1,10 @@
 package com.rzk.pojo;
 
+
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Map;
 
 /**
@@ -10,52 +15,33 @@ import java.util.Map;
  * @CreateTime : 21/1/2022 上午2:22
  * @Version : v1.0
  */
+@XmlRootElement(name = "xml")
 public class VideoMessage extends BaseMessage{
+    @XmlElement(name = "Video")
+    private Video video;
 
-    private String mediaId;
-    private String title;
-    private String description;
+    public VideoMessage() {
 
-    public String getMediaId() {
-        return mediaId;
     }
 
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public VideoMessage(Map<String, String> requestMap, String mediaId, String title, String description) {
+    public VideoMessage(Map<String, String> requestMap, Video video) {
         super(requestMap);
-        this.mediaId = mediaId;
-        this.title = title;
-        this.description = description;
         setMsgType("video");
+        this.video = video;
     }
 
+    public Video getVideo() {
+        return video;
+    }
+    @XmlTransient
+    public void setVideo(Video video) {
+        this.video = video;
+    }
 
     @Override
     public String toString() {
         return "VideoMessage{" +
-                "mediaId='" + mediaId + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
+                "video=" + video +
                 '}';
     }
 }

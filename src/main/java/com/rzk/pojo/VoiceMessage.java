@@ -1,5 +1,9 @@
 package com.rzk.pojo;
 
+
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Map;
 
 /**
@@ -10,27 +14,33 @@ import java.util.Map;
  * @CreateTime : 21/1/2022 上午2:19
  * @Version : v1.0
  */
+@XmlRootElement(name = "xml")
 public class VoiceMessage extends BaseMessage{
+    @XmlElement(name = "Voice")
+    private Voice voice;
 
-    private String mediaId;
+    public VoiceMessage() {
 
-    public String getMediaId() {
-        return mediaId;
     }
 
-    public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
-    }
-
-    public VoiceMessage(Map<String, String> requestMap, String mediaId) {
+    public VoiceMessage(Map<String, String> requestMap, Voice voice) {
         super(requestMap);
-        this.mediaId = mediaId;
+        setMsgType("voice");
+        this.voice = voice;
+    }
+
+    public Voice getVoice() {
+        return voice;
+    }
+
+    public void setVoice(Voice voice) {
+        this.voice = voice;
     }
 
     @Override
     public String toString() {
         return "VoiceMessage{" +
-                "mediaId='" + mediaId + '\'' +
+                "voice=" + voice +
                 '}';
     }
 }
