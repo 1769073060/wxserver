@@ -28,8 +28,8 @@ public class BaseMessage {
     }
 
     public BaseMessage(Map<String,String> requestMap) {
-        this.toUserName = requestMap.get("FromUserName");
-        this.fromUserName = requestMap.get("ToUserName");
+        this.toUserName = requestMap.get(WxConsts.FromUserName);
+        this.fromUserName = requestMap.get(WxConsts.ToUserName);
         this.createTime = System.currentTimeMillis()/1000+"";
     }
 
