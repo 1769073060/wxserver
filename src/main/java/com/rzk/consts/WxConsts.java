@@ -78,19 +78,22 @@ public class WxConsts {
     public static final String USER_IS_EXIST = "用户已存在";
     public static final String USER_IS_NOT_EXIST = "用户不存在";
     public static final String ACCOUNT_OR_PASSWORD_ERROR = "账号或密码错误";
+    //公众号响应的参数
     public static final String RESP_MESSAGE_TYPE_TEXT = "text";
-    public static final Object REQ_MESSAGE_TYPE_TEXT = "text";
-    public static final Object REQ_MESSAGE_TYPE_IMAGE = "image";
-    public static final Object REQ_MESSAGE_TYPE_VOICE = "voice";
-    public static final Object REQ_MESSAGE_TYPE_VIDEO = "video";
-    public static final Object REQ_MESSAGE_TYPE_LOCATION = "location";
-    public static final Object REQ_MESSAGE_TYPE_LINK = "link";
-    public static final Object REQ_MESSAGE_TYPE_EVENT = "event";
-    public static final Object EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
-    public static final Object EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
-    public static final Object EVENT_TYPE_SCAN = "SCAN";
-    public static final Object EVENT_TYPE_LOCATION = "LOCATION";
-    public static final Object EVENT_TYPE_CLICK = "CLICK";
+    //公众号请求的参数
+    public static final String REQ_MESSAGE_TYPE_TEXT = "text";
+    public static final String REQ_MESSAGE_TYPE_IMAGE = "image";
+    public static final String REQ_MESSAGE_TYPE_VOICE = "voice";
+    public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+    public static final String REQ_MESSAGE_TYPE_LOCATION = "location";
+    public static final String REQ_MESSAGE_TYPE_LINK = "link";
+    public static final String REQ_MESSAGE_TYPE_EVENT = "event";
+    public static final String EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
+    public static final String EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
+    public static final String EVENT_TYPE_SCAN = "SCAN";
+    public static final String EVENT_TYPE_LOCATION = "LOCATION";
+    public static final String EVENT_TYPE_CLICK = "CLICK";
+
 
     public static final String FromUserName = "FromUserName";
     public static final String ToUserName = "ToUserName";
