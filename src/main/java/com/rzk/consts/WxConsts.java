@@ -119,7 +119,6 @@ public class WxConsts {
     //自定义菜单
     public static final String EVENT_TYPE_CLICK = "CLICK";
     //根据自己所需要的场景进行 回复相对于的消息内容
-}
 
     public static final String FromUserName = "FromUserName";
     public static final String ToUserName = "ToUserName";
