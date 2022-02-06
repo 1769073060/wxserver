@@ -2,8 +2,10 @@ package com.rzk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rzk.consts.WxConsts;
-import com.rzk.pojo.Token;
+import com.rzk.pojo.*;
+import com.rzk.service.IWxResourceService;
 import com.rzk.service.WxService;
 import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -266,7 +269,19 @@ public class WxServerController {
 
         return token.getAccessToken();
     }
+    @Resource
+    private IWxResourceService iWxResourceService;
+    @GetMapping(value = "test")
+    public WxResource test(){
 
+
+
+            QueryWrapper<WxResource> queryWrapper = new QueryWrapper();
+
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "office2016"));
+        System.out.println(wxResource);
+       return wxResource;
+    }
 
 
 }

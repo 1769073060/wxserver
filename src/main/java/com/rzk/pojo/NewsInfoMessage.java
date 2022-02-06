@@ -19,16 +19,15 @@ public class NewsInfoMessage extends BaseMessage {
     @XmlElement(name = "ArticleCount")
     private String articleCount;
     @XmlElement(name = "Articles")
-    @XmlElementWrapper(name = "Articles")//使用list数组需要使用该注解,使下一级嵌套在该数组下
     private List<Articles> articles;
 
     public NewsInfoMessage() {
     }
 
-    public NewsInfoMessage(Map<String, String> requestMap, String articleCount, List<Articles> articles) {
+    public NewsInfoMessage(Map<String, String> requestMap, List<Articles> articles) {
         super(requestMap);
         setMsgType("news");
-        this.articleCount = articleCount;
+        this.articleCount = articles.size()+"";
         this.articles = articles;
     }
 
@@ -56,4 +55,5 @@ public class NewsInfoMessage extends BaseMessage {
                 '}';
     }
 }
+
 

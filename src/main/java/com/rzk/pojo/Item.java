@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @Version : v1.0
  */
 public class Item {
-    @XmlElement(name = "title")
+    @XmlElement(name = "Title")
     private String title;
     @XmlElement(name = "Description")
     private String description;

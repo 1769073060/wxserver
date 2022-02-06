@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +32,7 @@ public class WxService {
      */
     public String getResponse(Map<String, String> requestMap) {
         BaseMessage message = null;
+        //接收到的用户消息只需要获取到消息类型即可
         String msgType = requestMap.get("MsgType");
         logger.info("消息类型{}:"+msgType);
 

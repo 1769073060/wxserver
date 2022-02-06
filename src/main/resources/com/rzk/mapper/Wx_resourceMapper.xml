@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rzk.mapper.Wx_resourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.rzk.rzk.pojo.Wx_resource">
+        <id column="id" property="id" />
+        <result column="create_master" property="create_master" />
+        <result column="url" property="url" />
+        <result column="uri" property="uri" />
+        <result column="fetch_code" property="fetch_code" />
+        <result column="file_name" property="file_name" />
+        <result column="failure_type" property="failure_type" />
+        <result column="qr_code" property="qr_code" />
+        <result column="pdf" property="pdf" />
+        <result column="user_number" property="user_number" />
+        <result column="deleted" property="deleted" />
+        <result column="update_time" property="update_time" />
+        <result column="create_time" property="create_time" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_master, url, uri, fetch_code, file_name, failure_type, qr_code, pdf, user_number, deleted, update_time, create_time
+    </sql>
+
+</mapper>

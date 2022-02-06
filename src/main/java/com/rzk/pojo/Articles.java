@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 public class Articles {
 
-    @XmlElement(name = "Item")
+    @XmlElement(name = "item")
     private Item item;
 
     public Articles(Item item) {
