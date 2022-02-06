@@ -78,19 +78,47 @@ public class WxConsts {
     public static final String USER_IS_EXIST = "用户已存在";
     public static final String USER_IS_NOT_EXIST = "用户不存在";
     public static final String ACCOUNT_OR_PASSWORD_ERROR = "账号或密码错误";
+    //公众号响应的参数
     public static final String RESP_MESSAGE_TYPE_TEXT = "text";
-    public static final Object REQ_MESSAGE_TYPE_TEXT = "text";
-    public static final Object REQ_MESSAGE_TYPE_IMAGE = "image";
-    public static final Object REQ_MESSAGE_TYPE_VOICE = "voice";
-    public static final Object REQ_MESSAGE_TYPE_VIDEO = "video";
-    public static final Object REQ_MESSAGE_TYPE_LOCATION = "location";
-    public static final Object REQ_MESSAGE_TYPE_LINK = "link";
-    public static final Object REQ_MESSAGE_TYPE_EVENT = "event";
-    public static final Object EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
-    public static final Object EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
-    public static final Object EVENT_TYPE_SCAN = "SCAN";
-    public static final Object EVENT_TYPE_LOCATION = "LOCATION";
-    public static final Object EVENT_TYPE_CLICK = "CLICK";
+    //图片消息
+    public static final String RESP_MESSAGE_TYPE_IMAGE = "image";
+    //语音消息
+    public static final String RESP_MESSAGE_TYPE_VOICE = "voice";
+    //视频消息
+    public static final String RESP_MESSAGE_TYPE_VIDEO = "video";
+    //音乐消息
+    public static final String RESP_MESSAGE_TYPE_MUSIC = "music";
+    //图文消息
+    public static final String RESP_MESSAGE_TYPE_NEWS = "news";
+    //公众号请求的参数
+    //文本消息
+    public static final String REQ_MESSAGE_TYPE_TEXT = "text";
+    //图片消息
+    public static final String REQ_MESSAGE_TYPE_IMAGE = "image";
+    //语音消息
+    public static final String REQ_MESSAGE_TYPE_VOICE = "voice";
+    //视频消息
+    public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+    //音乐消息
+    public static final String REQ_MESSAGE_TYPE_MUSIC = "music";
+    //图文消息
+    public static final String REQ_MESSAGE_TYPE_NEWS = "news";
+    //地理位置消息
+    public static final String REQ_MESSAGE_TYPE_LOCATION = "location";
+    //链接消息
+    public static final String REQ_MESSAGE_TYPE_LINK = "link";
+    //事件类型
+    public static final String REQ_MESSAGE_TYPE_EVENT = "event";
+    //关注
+    public static final String EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
+    public static final String EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
+    //扫描带参数二维码
+    public static final String EVENT_TYPE_SCAN = "SCAN";
+    //上报地理位置
+    public static final String EVENT_TYPE_LOCATION = "LOCATION";
+    //自定义菜单
+    public static final String EVENT_TYPE_CLICK = "CLICK";
+    //根据自己所需要的场景进行 回复相对于的消息内容
 
     public static final String FromUserName = "FromUserName";
     public static final String ToUserName = "ToUserName";
