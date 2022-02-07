@@ -1,5 +1,6 @@
 package com.rzk.pojo;
 
+import com.rzk.consts.WxConsts;
 import lombok.Data;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;

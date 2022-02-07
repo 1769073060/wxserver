@@ -22,14 +22,22 @@ public class WxResourcesConsts {
     public static final String AdobeMediaId2018Mac ="ZsTOPhTqgtzqOe6JOh79UXoEzSTJ-h37ABaLkbplLrXzjPFW-uwG4OpDbiCS7BcW";
     public static final String AdobeMediaId2019Mac ="ZsTOPhTqgtzqOe6JOh79UYnLEMWnUM1nv968kjyh5e2GUxqDa87yGDzwXpeEFWK_";
 
+    //ps
     public static final String AdobeMediaIdPSCC ="ZsTOPhTqgtzqOe6JOh79UaRX7hPr7GEyepIoJQn0zMvFZR9vojgSjW-vTRz57t62";
-    public static final String AdobeMediaIdPSCC2022 ="ZsTOPhTqgtzqOe6JOh79UYLmE82TRuRb0Eoy7fdsESnvqbbaB5V1IvP5CXhPjeBs";
+    public static final String AdobeMediaIdPSCC2022 ="ZsTOPhTqgtzqOe6JOh79UaO-ch7MMFpBevvePKZkROKy3T-tO2oLr6DC2k0m1QWo";
     public static final String AdobeMediaIdPSCC2020 ="ZsTOPhTqgtzqOe6JOh79URht23P9Wybq7mDp-WnFc3oguKbBg-Nabjc1nV5xa7xg";
     public static final String AdobeMediaIdPSCC2019 ="ZsTOPhTqgtzqOe6JOh79UVXoL_s7hAzxshsfadnsJyNw9nWb3OEPIo5o3eHG4Wea";
     public static final String AdobeMediaIdPSCC2018 ="ZsTOPhTqgtzqOe6JOh79UfmJztciFikm-LEbcuSYSQP_8nCH9aoHRFC5ijsNTfIk";
     public static final String AdobeMediaIdPSCC2015 ="ZsTOPhTqgtzqOe6JOh79UY-IcpeBHNOfsYQb8wcOuuPOq-zcRKQbChZt-m8erKyO";
     public static final String AdobeMediaIdPSCC2014 ="ZsTOPhTqgtzqOe6JOh79UQY4gS-D-wK_79B8i5m4Tw75QeHKAzfSehtUvKxI53xT";
-
+    //pr
+    public static final String AdobeMediaIdPRCC ="ZsTOPhTqgtzqOe6JOh79UctRBycWAXzhDso1NY0L9eHLbG8pYT6TfdEb1md_tr66";
+    public static final String AdobeMediaIdPRCC2022 ="ZsTOPhTqgtzqOe6JOh79UUhrt3GrdvZEcHncCykepvfn7stBS5iXz8q1PZyieFEb";
+    public static final String AdobeMediaIdPRCC2020 ="ZsTOPhTqgtzqOe6JOh79UQOd6HbmDo1F2lScqRoNF3Urck-RsvhJ4vg4mwoZpKDk";
+    public static final String AdobeMediaIdPRCC2019 ="ZsTOPhTqgtzqOe6JOh79UTZSjX_x9xk9GjHSKZRua7lIFfs2oiyGmffEPkD8yB9E";
+    public static final String AdobeMediaIdPRCC2018 ="ZsTOPhTqgtzqOe6JOh79Ue5Hq4kakFWT7zZ1WoXSvyBY5Nho0w0zZVO2eZQDoddu";
+    public static final String AdobeMediaIdPRCC2015 ="ZsTOPhTqgtzqOe6JOh79UVlfzcjiljyv_snkIIyo7_WbZG_m1UKV3mFIapwzT0Qt";
+    public static final String AdobeMediaIdPRCC2014 ="ZsTOPhTqgtzqOe6JOh79UShnVCj4eoAbOnUXqj41ppwHKucPldkC0gmut0W14BoC";
 
 
 }
