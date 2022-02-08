@@ -99,6 +99,8 @@ public class WxConsts {
     public static final String REQ_MESSAGE_TYPE_VOICE = "voice";
     //视频消息
     public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+    //短视频
+    public static final String REQ_MESSAGE_TYPE_SHORT_VIDEO = "shortvideo";
     //音乐消息
     public static final String REQ_MESSAGE_TYPE_MUSIC = "music";
     //图文消息
@@ -108,10 +110,13 @@ public class WxConsts {
     //链接消息
     public static final String REQ_MESSAGE_TYPE_LINK = "link";
     //事件类型
-    public static final String REQ_MESSAGE_TYPE_EVENT = "event";
-    //关注
-    public static final String EVENT_TYPE_SUBSCRIBE = "SUBSCRIBE";
-    public static final String EVENT_TYPE_UNSUBSCRIBE = "UNSUBSCRIBE";
+    public static final String REQ_MESSAGE_TYPE_MSG_TYPE = "event";
+    //事件类型
+    public static final String REQ_MESSAGE_TYPE_EVENT = "Event";
+    //关注订阅
+    public static final String EVENT_TYPE_SUBSCRIBE = "subscribe";
+    //取消订阅
+    public static final String EVENT_TYPE_UNSUBSCRIBE = "unsubscribe";
     //扫描带参数二维码
     public static final String EVENT_TYPE_SCAN = "SCAN";
     //上报地理位置

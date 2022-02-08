@@ -1,5 +1,6 @@
 package com.rzk.service;
 
+import com.rzk.consts.WxConsts;
 import com.rzk.pojo.BaseMessage;
 import com.rzk.util.BeanToXml;
 import org.slf4j.Logger;
@@ -38,29 +39,34 @@ public class WxService {
 
         //根据自己所需要的场景进行 回复相对于的消息内容
         switch (msgType){
-            case "text":
+            // 文本消息
+            case WxConsts.REQ_MESSAGE_TYPE_TEXT:
                 logger.info("进入text");
                 message = replyMessageService.replyTextMessage(requestMap);
                 logger.info("进入text");
                 break;
-            case "image":
+            case WxConsts.REQ_MESSAGE_TYPE_IMAGE:
 
                 break;
-            case "voice":
+            case WxConsts.REQ_MESSAGE_TYPE_VOICE:
 
                 break;
-            case "video":
+            case WxConsts.REQ_MESSAGE_TYPE_VIDEO:
 
                 break;
-            case "shortvideo":
+            case WxConsts.REQ_MESSAGE_TYPE_SHORT_VIDEO:
 
                 break;
 
-            case "location":
+            case WxConsts.REQ_MESSAGE_TYPE_LOCATION:
 
                 break;
-            case "link":
+            case WxConsts.REQ_MESSAGE_TYPE_LINK:
 
+                break;
+            // 事件推送
+            case WxConsts.REQ_MESSAGE_TYPE_MSG_TYPE:
+                message = replyMessageService.replyEventMessage(requestMap);
                 break;
             default:
                 break;
