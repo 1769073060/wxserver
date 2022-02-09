@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rzk.consts.WxConsts;
 import com.rzk.pojo.*;
 import com.rzk.service.IWxResourceService;
-import com.rzk.service.WxService;
+import com.rzk.service.IWxService;
 import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
 import com.rzk.util.MsgUtil;
@@ -40,7 +40,7 @@ public class WxServerController {
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
     @Resource
-    private WxService wxService;
+    private IWxService wxService;
 
     /**
      *

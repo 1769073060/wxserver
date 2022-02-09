@@ -1,15 +1,16 @@
-package com.rzk.service;
+package com.rzk.service.impl;
 
 import com.rzk.consts.WxConsts;
 import com.rzk.pojo.BaseMessage;
+import com.rzk.service.IReplyMessageService;
+import com.rzk.service.ITbTaoZheKouMessageService;
+import com.rzk.service.IWxService;
 import com.rzk.util.BeanToXml;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,11 +22,15 @@ import java.util.Map;
  * @Version : v1.0
  */
 @Service
-public class WxService {
-    private Logger logger = LoggerFactory.getLogger(WxService.class);
+public class WxServiceImpl implements IWxService {
+    private Logger logger = LoggerFactory.getLogger(WxServiceImpl.class);
 
     @Resource
-    private ReplyMessageService replyMessageService;
+    private IReplyMessageService iReplyMessageService;
+    @Resource
+    private ITbTaoZheKouMessageService iTbTaoZheKouMessageService;
+
+
     /**
      * 用于处理所有的事件和消息的回复
      * @param requestMap
@@ -42,9 +47,21 @@ public class WxService {
             // 文本消息
             case WxConsts.REQ_MESSAGE_TYPE_TEXT:
                 logger.info("进入text");
-                message = replyMessageService.replyTextMessage(requestMap);
-                logger.info("进入text");
-                break;
+                String msg = requestMap.get("Content");
+                String substring = msg.substring(0, 1);
+
+                //取出商品id，发送httpclient请求
+
+                if (substring.equals("h")){
+                    message = iTbTaoZheKouMessageService.replyTbZheKouMessage(requestMap);
+                    break;
+                }else {
+                    message = iReplyMessageService.replyTextMessage(requestMap);
+                    logger.info("进入text");
+                    break;
+                }
+
+
             case WxConsts.REQ_MESSAGE_TYPE_IMAGE:
 
                 break;
@@ -62,11 +79,10 @@ public class WxService {
 
                 break;
             case WxConsts.REQ_MESSAGE_TYPE_LINK:
-
                 break;
             // 事件推送
             case WxConsts.REQ_MESSAGE_TYPE_MSG_TYPE:
-                message = replyMessageService.replyEventMessage(requestMap);
+                message = iReplyMessageService.replyEventMessage(requestMap);
                 break;
             default:
                 break;
