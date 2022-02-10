@@ -35,7 +35,7 @@ import java.util.Map;
  * @Version : v1.0
  */
 @Service
-public class ReplyMessageServiceImpl implements IReplyMessageService {
+public class ReplyMessageServiceImpl implements IReplyMessageService{
 
     private Logger logger = LoggerFactory.getLogger(ReplyMessageServiceImpl.class);
     @Resource
@@ -82,7 +82,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.OfficeMediaId2010);
+                image.setMediaId(WxResourcesConsts.Office_Media_Id_2010);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -119,7 +119,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.OfficeMediaId2016);
+                image.setMediaId(WxResourcesConsts.Office_Media_Id_2016);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -156,7 +156,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.OfficeMediaId2019);
+                image.setMediaId(WxResourcesConsts.Office_Media_Id_2019);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -190,7 +190,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.OfficeMediaId365);
+                image.setMediaId(WxResourcesConsts.Office_Media_Id_365);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -231,7 +231,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaId2022);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_2022);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -272,7 +272,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaId2019);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_2019);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -285,7 +285,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         /**
          * Adobe2018mac全家桶
          */
-        if (msg.equals("Adobe2018mac")) {
+        if (msg.equals("Adobe2018mac")||msg.equals("adobe2018mac")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Adobe2018mac"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getFileName() + "全家桶");
@@ -299,12 +299,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("Adobe2018mac二维码")) {
+        if (msg.equals("Adobe2018mac二维码")||msg.equals("adobe2018mac二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Adobe2018mac"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaId2018Mac);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_2018_Mac);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -317,7 +317,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         /**
          * Adobe2019mac全家桶
          */
-        if (msg.equals("Adobe2019mac")) {
+        if (msg.equals("Adobe2019mac")||msg.equals("adobe2019mac")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Adobe2019mac"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getFileName() + "全家桶");
@@ -331,12 +331,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("Adobe2019mac二维码")) {
+        if (msg.equals("Adobe2019mac二维码")||msg.equals("adobe2019mac二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Adobe2019mac"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaId2019Mac);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_2019_Mac);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -368,7 +368,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -395,12 +395,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2022二维码") || msg.equals("psCC2022二维码") || msg.equals("pscc2022二维码")) {
+        if (msg.equals("PSCC2022二维码") || msg.equals("psCC2022二维码") || msg.equals("ps2022二维码")|| msg.equals("pscc2022二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2022"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2022);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2022);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -427,12 +427,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2020二维码") || msg.equals("psCC2020二维码") || msg.equals("pscc2020二维码")) {
+        if (msg.equals("PSCC2020二维码") || msg.equals("psCC2020二维码") || msg.equals("ps2020二维码") || msg.equals("pscc2020二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2020"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2020);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2020);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -459,12 +459,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2019二维码") || msg.equals("psCC2019二维码") || msg.equals("pscc2019二维码")) {
+        if (msg.equals("PSCC2019二维码") || msg.equals("psCC2019二维码")|| msg.equals("ps2019二维码") || msg.equals("pscc2019二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2019"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2019);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2019);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -491,12 +491,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2018二维码") || msg.equals("psCC2018二维码") || msg.equals("pscc2018二维码")) {
+        if (msg.equals("PSCC2018二维码") || msg.equals("psCC2018二维码") || msg.equals("ps2018二维码") || msg.equals("pscc2018二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2018"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2018);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2018);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -523,12 +523,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2015二维码") || msg.equals("psCC2015二维码") || msg.equals("pscc2015二维码")) {
+        if (msg.equals("PSCC2015二维码") || msg.equals("psCC2015二维码") || msg.equals("ps2015二维码")|| msg.equals("pscc2015二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2015"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2015);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2015);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -555,12 +555,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PSCC2014二维码") || msg.equals("psCC2014二维码") || msg.equals("pscc2014二维码")) {
+        if (msg.equals("PSCC2014二维码") || msg.equals("psCC2014二维码") || msg.equals("ps2014二维码") || msg.equals("pscc2014二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePsCC2014"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPSCC2014);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PS_CC_2014);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -593,7 +593,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -620,12 +620,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2022二维码") || msg.equals("prCC2022二维码") || msg.equals("prcc2022二维码")) {
+        if (msg.equals("PRCC2022二维码") || msg.equals("prCC2022二维码") || msg.equals("pr2022二维码") || msg.equals("prcc2022二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2022"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2022);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2022);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -652,12 +652,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2020二维码") || msg.equals("prCC2020二维码") || msg.equals("prcc2020二维码")) {
+        if (msg.equals("PRCC2020二维码") || msg.equals("prCC2020二维码") || msg.equals("pr2020二维码")|| msg.equals("prcc2020二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2020"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2020);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2020);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -684,12 +684,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2019二维码") || msg.equals("prCC2019二维码") || msg.equals("prcc2019二维码")) {
+        if (msg.equals("PRCC2019二维码") || msg.equals("prCC2019二维码")|| msg.equals("pr2019二维码") || msg.equals("prcc2019二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2019"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2019);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2019);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -716,12 +716,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2018二维码") || msg.equals("prCC2018二维码") || msg.equals("prcc2018二维码")) {
+        if (msg.equals("PRCC2018二维码") || msg.equals("prCC2018二维码")  || msg.equals("pr2018二维码")|| msg.equals("prcc2018二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2018"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2018);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2018);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -748,12 +748,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2015二维码") || msg.equals("prCC2015二维码") || msg.equals("prcc2015二维码")) {
+        if (msg.equals("PRCC2015二维码") || msg.equals("prCC2015二维码") || msg.equals("pr2015二维码") || msg.equals("prcc2015二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2015"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2015);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2015);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -780,12 +780,12 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("PRCC2014二维码") || msg.equals("prCC2014二维码") || msg.equals("prcc2014二维码")) {
+        if (msg.equals("PRCC2014二维码") || msg.equals("prCC2014二维码")|| msg.equals("pr2014二维码")  || msg.equals("prcc2014二维码")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobePrCC2014"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.AdobeMediaIdPRCC2014);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_PR_CC_2014);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {
@@ -797,6 +797,135 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /**
+         * AdobeLRCC2022
+         */
+        if (msg.equals("LRCC2022") || msg.equals("lrCC2022") || msg.equals("lrcc2022") || msg.equals("LR2022") || msg.equals("lr2022")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("LRCC2022二维码") || msg.equals("lrCC2022二维码") || msg.equals("lr2022二维码") || msg.equals("lrcc2022二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_LR_CC_2022);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeLrCC2019
+         */
+        if (msg.equals("LRCC2019") || msg.equals("lrCC2019") || msg.equals("lrcc2019") || msg.equals("lr2019")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("LRCC2019二维码") || msg.equals("lrCC2019二维码") || msg.equals("lr2019二维码") || msg.equals("lrcc2019二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_LR_CC_2019);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeLRCC2018
+         */
+        if (msg.equals("LRCC2018") || msg.equals("lrCC2018") || msg.equals("lrcc2018") || msg.equals("lr2018")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("LRCC2018二维码") || msg.equals("lrCC2018二维码")|| msg.equals("lr2018二维码") || msg.equals("lrcc2018二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_LR_CC_2018);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeLRCC2015
+         */
+        if (msg.equals("LRCC2015") || msg.equals("lrCC2015") || msg.equals("lrcc2015") || msg.equals("lr2015")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("LRCC2015二维码") || msg.equals("lrCC2015二维码")|| msg.equals("lr2015二维码") || msg.equals("lrcc2015二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeLrCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_LR_CC_2015);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         else {
             stringBuffer.append("找不到该资源，关键字输入未匹配到或还未添加该资源");
