@@ -55,8 +55,8 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
             NewsInfoMessage newsInfoMessage = new NewsInfoMessage(requestMap, articles);
             return newsInfoMessage;
         }
-        if (msg.equals("梯子")||msg.equals("tz")||msg.equals("TZ")) {
-            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "tz"));
+        if (msg.equals("pc梯子")||msg.equals("pctz")||msg.equals("pcTZ")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Pctz"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getFileName());
                 stringBuffer.append("链接:");
@@ -69,6 +69,23 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
             }
             return textMessage;
         }
+        if (msg.equals("android梯子")||msg.equals("android梯子")||msg.equals("androidtz")||msg.equals("androidTZ")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Androidtz"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        /**
+         * ios梯子连接
+         */
         if (msg.equals("iostz教程")||msg.equals("iostz")||msg.equals("iosfq")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "iostz"));
             if (wxResource != null) {
@@ -1581,6 +1598,201 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
             logger.info("imageMessage{}:" + imageMessage);
             return imageMessage;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /**
+         * AdobeAECC
+         */
+        if (msg.equals("AECC") || msg.equals("AeCC") || msg.equals("aecc")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AECC二维码") || msg.equals("aeCC二维码") || msg.equals("Aecc二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeAECC2022
+         */
+        if (msg.equals("AECC2022") || msg.equals("aeCC2022") || msg.equals("aecc2022") || msg.equals("AE2022") || msg.equals("ae2022")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AECC2022二维码") || msg.equals("aeCC2022二维码") || msg.equals("ae2022二维码") || msg.equals("aecc2022二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2022);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeAECC2019
+         */
+        if (msg.equals("AECC2019") || msg.equals("aeCC2019") || msg.equals("aecc2019") || msg.equals("ae2019")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AECC2019二维码") || msg.equals("aeCC2019二维码")|| msg.equals("ae2019二维码") || msg.equals("aecc2019二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAuCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2019);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeAECC2018
+         */
+        if (msg.equals("AECC2018") || msg.equals("aeCC2018") || msg.equals("aecc2018") || msg.equals("ae2018")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AeCC2018二维码") || msg.equals("aeCC2018二维码") || msg.equals("ae2018二维码") || msg.equals("aecc2018二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2018);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeAUCC2015
+         */
+        if (msg.equals("AECC2015") || msg.equals("aeCC2015") || msg.equals("aecc2015") || msg.equals("ae2015")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AECC2015二维码") || msg.equals("aeCC2015二维码") || msg.equals("ae2015二维码")|| msg.equals("aecc2015二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2015);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeAECC2014
+         */
+        if (msg.equals("AECC2014") || msg.equals("aeCC2014") || msg.equals("aecc2014") || msg.equals("ae2014")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2014"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName());
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("AECC2014二维码") || msg.equals("aeCC2014二维码") || msg.equals("ae2014二维码") || msg.equals("aecc2014二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAeCC2014"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2014);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
