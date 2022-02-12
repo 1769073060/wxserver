@@ -43,6 +43,29 @@ public class WxResourcesConsts {
     public static final String Adobe_Media_Id_LR_CC_2019 ="ZsTOPhTqgtzqOe6JOh79UTjSjvkEBn_HAxelBjxZt3jRdjmfs2ucfVdQ1T36K_vf";
     public static final String Adobe_Media_Id_LR_CC_2018 ="ZsTOPhTqgtzqOe6JOh79UUXp2Bw_RuS_aqwqlJOP2ulO6MjU8dKQ-s1QiD_7FBMU";
     public static final String Adobe_Media_Id_LR_CC_2015 ="ZsTOPhTqgtzqOe6JOh79UcuqFfIHHa56Lir9dKD4RdzAldagTRRcdxz8VEAF6BzL";
-   
+    //id
+    public static final String Adobe_Media_Id_ID_CC_2022 ="";
+    public static final String Adobe_Media_Id_ID_CC_2019 ="";
+    public static final String Adobe_Media_Id_ID_CC_2018 ="";
+    //dw
+    public static final String Adobe_Media_Id_DW_CC_2022 ="";
+    public static final String Adobe_Media_Id_DW_CC_2019 ="";
+    public static final String Adobe_Media_Id_DW_CC_2018 ="";
+    public static final String Adobe_Media_Id_DW_CC_2015 ="";
+    //au
+    public static final String Adobe_Media_Id_AU_CC ="";
+    public static final String Adobe_Media_Id_AU_CC_2022 ="";
+    public static final String Adobe_Media_Id_AU_CC_2019 ="";
+    public static final String Adobe_Media_Id_AU_CC_2018 ="";
+    public static final String Adobe_Media_Id_AU_CC_2015 ="";
+    public static final String Adobe_Media_Id_AU_CC_2014 ="";
+    //ai
+    public static final String Adobe_Media_Id_AI_CC ="";
+    public static final String Adobe_Media_Id_AI_CC_2022 ="";
+    public static final String Adobe_Media_Id_AI_CC_2020 ="";
+    public static final String Adobe_Media_Id_AI_CC_2019 ="";
+    public static final String Adobe_Media_Id_AI_CC_2018 ="";
+    public static final String Adobe_Media_Id_AI_CC_2015 ="";
+    public static final String Adobe_Media_Id_AI_CC_2014 ="";
 
 }
