@@ -7,13 +7,11 @@ import com.rzk.pojo.BaseMessage;
 import com.rzk.pojo.TextMessage;
 import com.rzk.service.ITbTaoZheKouMessageService;
 import com.rzk.util.HttpClient;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
+
 import java.util.Map;
 
 /**
@@ -89,10 +87,10 @@ public class TbTaoZheKouMessageServiceImpl implements ITbTaoZheKouMessageService
             stringBuilder.append("【优惠金额】：").append(coupon_amount).append("\n")
                     .append("【券后价】：").append(finalPrice).append("\n");
         }
-        if (StringUtils.isNotBlank(tkfee3)) {
-            BigDecimal multiply = new BigDecimal(tkfee3).multiply(new BigDecimal("0.6"));
-            stringBuilder.append("【返俐】：").append(multiply.toString()).append("\n");
-        }
+//        if (StringUtils.isNotBlank(tkfee3)) {
+//            BigDecimal multiply = new BigDecimal(tkfee3).multiply(new BigDecimal("0.6"));
+//            stringBuilder.append("【返俐】：").append(multiply.toString()).append("\n");
+//        }
         stringBuilder.append(password_simple).append("\n")
                 .append("——————————\n")
                 .append("【购买方法】：\n")
