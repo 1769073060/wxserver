@@ -116,6 +116,37 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
             return textMessage;
         }
         /**
+         * 白猿小说神器
+         */
+        if (msg.equals("白猿搜书")||msg.equals("白猿搜书小说")||msg.equals("白猿小说")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "白猿搜书蓝奏云"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName()+"\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResource.getUrl()+"\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("白猿搜书备用")||msg.equals("白猿搜书小说备用")||msg.equals("白猿小说备用")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "白猿搜书百度云"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName()+"\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResource.getUrl()+"\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        /**
          * FSC屏幕捕抓工具(Windows)
          */
         if (msg.equals("FSC屏幕捕抓工具")||msg.equals("fsc屏幕捕抓工具")) {

@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author Rzk
- * @since 2022-02-02
+ * @since 2022-02-16
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -41,6 +41,12 @@ public class WxResource implements Serializable {
     @ApiModelProperty(value = "文件名")
     private String fileName;
 
+    @ApiModelProperty(value = "目录名")
+    private String directoryName;
+
+    @ApiModelProperty(value = "系统版本")
+    private String systemVersion;
+
     @ApiModelProperty(value = "是否失效:0否1是")
     private Integer failureType;
 
@@ -61,6 +67,9 @@ public class WxResource implements Serializable {
 
     @ApiModelProperty(value = "创建时间")
     private Long createTime;
+
+    @ApiModelProperty(value = "下载源:1.百度云,2蓝奏云")
+    private String downloadSource;
 
 
 }

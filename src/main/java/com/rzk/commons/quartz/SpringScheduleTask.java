@@ -30,7 +30,7 @@ public class SpringScheduleTask {
     /**
      * 每两小时执行一次
      */
-    @Scheduled(cron = "* * 0/1 * * ? *")
+    @Scheduled(cron = "0 0 0/2 * * ?")
     public void WxTokenTimer(){
         String accessToken = wxServerController.getAccessToken();
         logger.info("执行检查wxtoken{}:\n"+accessToken);

@@ -48,11 +48,11 @@ public class WxServiceImpl implements IWxService {
             case WxConsts.REQ_MESSAGE_TYPE_TEXT:
                 logger.info("进入text");
                 String msg = requestMap.get("Content");
-                String substring = msg.substring(0, 1);
+                String substring = msg.substring(0, 4);
 
                 //取出商品id，发送httpclient请求
 
-                if (substring.equals("h")){
+                if (substring.equals("http")){
                     message = iTbTaoZheKouMessageService.replyTbZheKouMessage(requestMap);
                     break;
                 }else {
