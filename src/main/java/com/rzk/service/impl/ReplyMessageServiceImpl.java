@@ -147,6 +147,29 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
             return textMessage;
         }
         /**
+         * 论文查重软件win
+         */
+        if (msg.equals("Paperpass")||msg.equals("论文查重软件")||msg.equals("论文查重")) {
+            WxResource wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass蓝奏云"));
+            WxResource wxResourceBdy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass百度云"));
+            if (wxResourceLzy != null&&wxResourceBdy!=null) {
+                stringBuffer.append(wxResourceLzy.getFileName()+"\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceLzy.getUrl()+"\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode()+"\n");
+                stringBuffer.append("备用地址 "+wxResourceBdy.getFileName()+"\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceBdy.getUrl()+"\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        /**
          * FSC屏幕捕抓工具(Windows)
          */
         if (msg.equals("FSC屏幕捕抓工具")||msg.equals("fsc屏幕捕抓工具")) {
