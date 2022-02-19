@@ -44,6 +44,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
 
     public BaseMessage replyTextMessage(Map<String, String> requestMap) {
         QueryWrapper<WxResource> queryWrapper = new QueryWrapper();
+        QueryWrapper<WxResource> queryWrapperRes = new QueryWrapper();
         StringBuffer stringBuffer = new StringBuffer();
         TextMessage textMessage = null;
         ImageMessage imageMessage = null;
@@ -151,7 +152,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService{
          */
         if (msg.equals("Paperpass")||msg.equals("论文查重软件")||msg.equals("论文查重")) {
             WxResource wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass蓝奏云"));
-            WxResource wxResourceBdy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass百度云"));
+            WxResource wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Paperpass百度云"));
             if (wxResourceLzy != null&&wxResourceBdy!=null) {
                 stringBuffer.append(wxResourceLzy.getFileName()+"\n");
                 stringBuffer.append("教程链接:");
