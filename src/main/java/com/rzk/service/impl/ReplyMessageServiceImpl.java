@@ -45,6 +45,8 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
     public BaseMessage replyTextMessage(Map<String, String> requestMap) {
         QueryWrapper<WxResource> queryWrapper = new QueryWrapper();
         QueryWrapper<WxResource> queryWrapperRes = new QueryWrapper();
+        WxResource wxResourceLzy = null;
+        WxResource wxResourceBdy = null;
         StringBuffer stringBuffer = new StringBuffer();
         TextMessage textMessage = null;
         ImageMessage imageMessage = null;
@@ -57,20 +59,13 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             return newsInfoMessage;
         }
 
-
-
-
         if (msg.equals("录屏工具") || msg.equals("录屏")) {
-
             stringBuffer.append("可输入 FSC屏幕捕抓工具,fsc屏幕捕抓工具 获取");
-
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
         if (msg.equals("小说")) {
-
             stringBuffer.append("可输入 白猿搜书 获取");
-
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
@@ -86,8 +81,20 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
+        if (msg.equals("ps") || msg.equals("PS") || msg.equals("PS")){
+            stringBuffer.append("可输入 \n");
+            stringBuffer.append("pscc\n");
+            stringBuffer.append("ps2022\n");
+            stringBuffer.append("ps2020\n");
+            stringBuffer.append("ps2019\n");
+            stringBuffer.append("ps2018\n");
+            stringBuffer.append("ps2015\n");
+            stringBuffer.append("ps2014\n");
+            stringBuffer.append("获取资源\n");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            return textMessage;
+        }
         if (msg.equals("Adobe") || msg.equals("adobe")) {
-
             stringBuffer.append("可输入 \n");
             stringBuffer.append("Adobe2022,adobe2022全家桶,Adobe2022二维码\n");
             stringBuffer.append("Adobe2019,adobe2019全家桶,Adobe2019二维码\n");
@@ -104,26 +111,42 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             stringBuffer.append("ps2015,ps2015二维码\n");
             stringBuffer.append("ps2014,ps2014二维码\n");
             stringBuffer.append("获取资源\n");
-
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
-
-
-        if (msg.equals("pc梯子") || msg.equals("pctz") || msg.equals("pcTZ")) {
-            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Pctz"));
-            if (wxResource != null) {
-                stringBuffer.append(wxResource.getFileName() + "\n");
-                stringBuffer.append("链接:");
-                stringBuffer.append(wxResource.getUrl() + "\n");
+        if ( msg.equals("录屏录像") || msg.equals("屏幕录像")){
+            stringBuffer.append("可输入 \n");
+            stringBuffer.append("录屏录像专家\n");
+            stringBuffer.append("屏幕录像2022\n");
+            stringBuffer.append("屏幕录像专家2022\n");
+            stringBuffer.append("获取资源\n");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            return textMessage;
+        }
+        ////////////////////////////////////////////////////////////以上是作为提示用户输入
+        //屏幕录像专家
+        if (msg.equals("屏幕录像专家2022") || msg.equals("屏幕录像2022") || msg.equals("录屏录像专家") || msg.equals("屏幕录像专家"))  {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "屏幕录像专家蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "屏幕录像专家百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
-                stringBuffer.append(wxResource.getFetchCode());
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
             }
             return textMessage;
         }
+        //安卓tz
         if (msg.equals("android梯子") || msg.equals("android梯子") || msg.equals("androidtz") || msg.equals("androidTZ")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Androidtz"));
             if (wxResource != null) {
@@ -150,7 +173,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             stringBuffer.append("ios系统可回复:iostz\n");
             stringBuffer.append("安卓可看以下这篇文章教程: \n");
             stringBuffer.append("<a href=\"" +
-                    "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484252&idx=1&sn=08f0db2fd0728852c4ddda6b85f51ed6&chksm=c334fa8bf443739d6cb5114a81ddaa456926000646251fc419d6e1b489f13189f9ef5418c603&token=1596680842&lang=zh_CN#rd" +
+                    "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484252&idx=1&sn=08f0db2fd0728852c4ddda6b85f51ed6&chksm=c334fa8bf443739d6cb5114a81ddaa456926000646251fc419d6e1b489f13189f9ef5418c603&token=2106554294&lang=zh_CN#rd" +
                     "\">文章</a>");
             return new TextMessage(requestMap, stringBuffer.toString());
 
@@ -220,14 +243,15 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
          * 论文查重软件win
          */
         if (msg.equals("Paperpass") || msg.equals("论文查重软件") || msg.equals("论文查重")) {
-            WxResource wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass蓝奏云"));
-            WxResource wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Paperpass百度云"));
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Paperpass百度云"));
             if (wxResourceLzy != null && wxResourceBdy != null) {
                 stringBuffer.append(wxResourceLzy.getFileName() + "\n");
                 stringBuffer.append("教程链接:");
                 stringBuffer.append(wxResourceLzy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
                 stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
                 stringBuffer.append("教程链接:");
                 stringBuffer.append(wxResourceBdy.getUrl() + "\n");
@@ -262,12 +286,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
-        if (msg.equals("fsc二维码") ||
-                msg.equals("FSC二维码") ||
-                msg.equals("FSC图") ||
-                msg.equals("fsc") ||
-                msg.equals("FSC") ||
-                msg.equals("fsc图")) {
+        if (msg.equals("fsc二维码") || msg.equals("FSC二维码") || msg.equals("FSC图") || msg.equals("fsc") || msg.equals("FSC") || msg.equals("fsc图")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "FSC屏幕捕抓工具"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
