@@ -60,7 +60,11 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         }
 
         if (msg.equals("录屏工具") || msg.equals("录屏")) {
-            stringBuffer.append("可输入 FSC屏幕捕抓工具,fsc屏幕捕抓工具 获取");
+            stringBuffer.append("可输入\n");
+            stringBuffer.append("FSC屏幕捕抓工具\n");
+            stringBuffer.append("Capturea\n");
+            stringBuffer.append("录屏录像专家\n");
+            stringBuffer.append("获取");
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
@@ -76,6 +80,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             stringBuffer.append("office2016\n");
             stringBuffer.append("office2019\n");
             stringBuffer.append("office365\n");
+            stringBuffer.append("Office自定义组件安装工具(推荐使用这个)\n");
             stringBuffer.append("获取资源\n");
 
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
@@ -123,11 +128,19 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
+        if ( msg.equals("虚拟机") ){
+            stringBuffer.append("可输入 \n");
+            stringBuffer.append("VirtualBox\n");
+            stringBuffer.append("VMware16\n");
+            stringBuffer.append("获取资源\n");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            return textMessage;
+        }
         ////////////////////////////////////////////////////////////以上是作为提示用户输入
-        //屏幕录像专家
-        if (msg.equals("屏幕录像专家2022") || msg.equals("屏幕录像2022") || msg.equals("录屏录像专家") || msg.equals("屏幕录像专家"))  {
-            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "屏幕录像专家蓝奏云"));
-            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "屏幕录像专家百度云"));
+        //Office自定义安装工具
+        if (msg.equals("Office自定义安装工具") || msg.equals("Office安装工具") || msg.equals("Office安装组件")|| msg.equals("Office组件") || msg.equals("Office自定义组件安装工具") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Office自定义安装工具蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Office自定义安装工具百度云"));
             if (wxResourceLzy != null && wxResourceBdy != null) {
                 stringBuffer.append(wxResourceLzy.getFileName() + "\n");
                 stringBuffer.append("教程链接:");
@@ -146,6 +159,116 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             }
             return textMessage;
         }
+        //屏幕录像专家
+        if (msg.equals("Capturea") || msg.equals("capturea") || msg.equals("capture")|| msg.equals("captura") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Captura蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Captura百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("教程链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //VirtualBox
+        if ( msg.equals("virtualbox") || msg.equals("VirtualBox") || msg.equals("VirtualBox")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "VirtualBox"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //VMware
+        if (msg.equals("vmware") || msg.equals("vmware16") || msg.equals("VMware16") || msg.equals("VMware")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "VMware"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484486&idx=1&sn=b91cef18d71b18c18af9b55acc0429d5&chksm=c334fd91f4437487e2ffef0b738ef8179b69ce5353513d4645b1edaad58ffcf5e8d7cfe90b93#rd" +
+                        "\">图文教程</a>");
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://www.bilibili.com/video/BV13F41147o2?spm_id_from=333.999.0.0" +
+                        "\">视频教程</a>");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //屏幕录像专家
+        if (msg.equals("屏幕录像专家2022") || msg.equals("屏幕录像2022") || msg.equals("录屏录像专家") || msg.equals("屏幕录像专家"))  {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "屏幕录像专家蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "屏幕录像专家百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("pc梯子")||msg.equals("pctz")||msg.equals("pcTZ")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Pctz蓝奏云"));
+            System.out.println("wxResourceLzy{}==========>"+wxResourceLzy);
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Pctz百度云"));
+            System.out.println("wxResourceBdy{}==========>"+wxResourceBdy);
+
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247483937&idx=1&sn=f35e41a3ea78b9a349228ae9212a9296&chksm=c334fbf6f44372e01db1157583ba7687b4e3ab9ec468d32382d8e7f515207a346f68e1729e18&token=369971061&lang=zh_CN#rd" +
+                        "\">使用教程</a>");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
         //安卓tz
         if (msg.equals("android梯子") || msg.equals("android梯子") || msg.equals("androidtz") || msg.equals("androidTZ")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "Androidtz"));
@@ -157,7 +280,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append(wxResource.getFetchCode());
                 stringBuffer.append("\n");
                 stringBuffer.append("<a href=\"" +
-                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484252&idx=1&sn=08f0db2fd0728852c4ddda6b85f51ed6&chksm=c334fa8bf443739d6cb5114a81ddaa456926000646251fc419d6e1b489f13189f9ef5418c603&token=1596680842&lang=zh_CN#rd" +
+                        "https://mp.weixin.qq.com/s/MdxpGV-Hkjw3hXUQ7jgt6w" +
                         "\">使用教程</a>");
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
@@ -242,7 +365,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         /**
          * 论文查重软件win
          */
-        if (msg.equals("Paperpass") || msg.equals("论文查重软件") || msg.equals("论文查重")) {
+        if (msg.equals("Paperpass") || msg.equals("论文查重软件") || msg.equals("论文查重") || msg.equals("Paperpass,论文查重软件,论文查重")) {
             wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Paperpass蓝奏云"));
             wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Paperpass百度云"));
             if (wxResourceLzy != null && wxResourceBdy != null) {
@@ -638,7 +761,11 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append("\n");
                 stringBuffer.append("<a href=\"" +
                         "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247483787&idx=1&sn=87224d3121945de2f0b72a063c39b96e&chksm=c334f85cf443714a514d8758008e49008c9cb1cda7c020ca648db15ee6f0de803681a6d74af4&token=1596680842&lang=zh_CN#rd" +
-                        "\">使用教程</a>");
+                        "\">图文教程</a>");
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://www.bilibili.com/video/BV16Z4y1k7Lx?spm_id_from=333.999.0.0" +
+                        "\">视频教程</a>");
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
@@ -671,6 +798,14 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append(wxResource.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResource.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247483787&idx=1&sn=87224d3121945de2f0b72a063c39b96e&chksm=c334f85cf443714a514d8758008e49008c9cb1cda7c020ca648db15ee6f0de803681a6d74af4&token=1596680842&lang=zh_CN#rd" +
+                        "\">图文教程</a>");
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://www.bilibili.com/video/BV16Z4y1k7Lx?spm_id_from=333.999.0.0" +
+                        "\">视频教程</a>");
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
@@ -703,6 +838,14 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append(wxResource.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResource.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247483787&idx=1&sn=87224d3121945de2f0b72a063c39b96e&chksm=c334f85cf443714a514d8758008e49008c9cb1cda7c020ca648db15ee6f0de803681a6d74af4&token=1596680842&lang=zh_CN#rd" +
+                        "\">图文教程</a>");
+                stringBuffer.append("\n");
+                stringBuffer.append("<a href=\"" +
+                        "https://www.bilibili.com/video/BV16Z4y1k7Lx?spm_id_from=333.999.0.0" +
+                        "\">视频教程</a>");
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
@@ -1988,12 +2131,221 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (msg.equals("VirtualBox") || msg.equals("virtualbox")) {
-            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "VirtualBox"));
+        /**
+         * AdobeADCC
+         */
+        if (msg.equals("ADCC") || msg.equals("adCC") || msg.equals("adcc")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC二维码") || msg.equals("adCC二维码") || msg.equals("adcc二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC"));
             if (wxResource != null) {
                 stringBuffer.append(wxResource.getQrCode());
                 Image image = new Image();
-                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AE_CC_2014);
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2022
+         */
+        if (msg.equals("ADCC2022") || msg.equals("adCC2022") || msg.equals("adcc2022") || msg.equals("AD2022") || msg.equals("ad2022")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2022二维码") || msg.equals("adCC2022二维码") || msg.equals("ad2022二维码") || msg.equals("adcc2022二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2022"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2022);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2020
+         */
+        if (msg.equals("ADCC2020") || msg.equals("adCC2020") || msg.equals("adcc2020") || msg.equals("ad2020")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2020"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2020二维码") || msg.equals("adCC2020二维码") || msg.equals("ad2020二维码") || msg.equals("adcc2020二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2020"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2022);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2019
+         */
+        if (msg.equals("ADCC2019") || msg.equals("adCC2019") || msg.equals("adcc2019") || msg.equals("ad2019")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2019二维码") || msg.equals("adCC2019二维码") || msg.equals("ad2019二维码") || msg.equals("adcc2019二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2019"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2019);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2018
+         */
+        if (msg.equals("ADCC2018") || msg.equals("adCC2018") || msg.equals("adcc2018") || msg.equals("ad2018")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2018二维码") || msg.equals("adCC2018二维码") || msg.equals("ad2018二维码") || msg.equals("adcc2018二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2018"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2018);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2015
+         */
+        if (msg.equals("ADCC2015") || msg.equals("adCC2015") || msg.equals("adcc2015") || msg.equals("ad2015")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2015二维码") || msg.equals("adCC2015二维码") || msg.equals("ad2015二维码") || msg.equals("adcc2015二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2015"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2015);
+                imageMessage = new ImageMessage(requestMap, image);
+                logger.info("imageMessage{}:" + imageMessage);
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+                return textMessage;
+            }
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
+        /**
+         * AdobeADCC2014
+         */
+        if (msg.equals("ADCC2014") || msg.equals("adCC2014") || msg.equals("adcc2014") || msg.equals("ad2014")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2014"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("ADCC2014二维码") || msg.equals("adCC2014二维码") || msg.equals("ad2014二维码") || msg.equals("adcc2014二维码")) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "AdobeAdCC2014"));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getQrCode());
+                Image image = new Image();
+                image.setMediaId(WxResourcesConsts.Adobe_Media_Id_AD_CC_2014);
                 imageMessage = new ImageMessage(requestMap, image);
                 logger.info("imageMessage{}:" + imageMessage);
             } else {

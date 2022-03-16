@@ -73,6 +73,13 @@ public class WxResourcesConsts {
     public static final String Adobe_Media_Id_AE_CC_2018 ="ZsTOPhTqgtzqOe6JOh79UZIa2Q1nD-68RH7g6UiyLa22hZHlMub6ZL6Ozadpr20_";
     public static final String Adobe_Media_Id_AE_CC_2015 ="ZsTOPhTqgtzqOe6JOh79UcU6IjRGJd83bGZsk1hVN58-eReX3bqyh7lkWGgBB314";
     public static final String Adobe_Media_Id_AE_CC_2014 ="ZsTOPhTqgtzqOe6JOh79Ubr-P6__p4lAnTGcVy4liud0zloTFHixei4_oXVPfb0A";
+    //ae
+    public static final String Adobe_Media_Id_AD_CC ="";
+    public static final String Adobe_Media_Id_AD_CC_2022 ="";
+    public static final String Adobe_Media_Id_AD_CC_2019 ="";
+    public static final String Adobe_Media_Id_AD_CC_2018 ="";
+    public static final String Adobe_Media_Id_AD_CC_2015 ="";
+    public static final String Adobe_Media_Id_AD_CC_2014 ="";
 
     //屏幕捕抓工具
     public static final String Fast_Stone_Capture ="ZsTOPhTqgtzqOe6JOh79Ubev-gqigb4OWDeAaYnws8AYSmvu7mDi8jhVOuCcWI_h";
