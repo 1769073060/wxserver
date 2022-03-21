@@ -206,9 +206,11 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResource.getFetchCode());
                 stringBuffer.append("\n");
+                stringBuffer.append("\n");
                 stringBuffer.append("<a href=\"" +
                         "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484486&idx=1&sn=b91cef18d71b18c18af9b55acc0429d5&chksm=c334fd91f4437487e2ffef0b738ef8179b69ce5353513d4645b1edaad58ffcf5e8d7cfe90b93#rd" +
                         "\">图文教程</a>");
+                stringBuffer.append("\n");
                 stringBuffer.append("\n");
                 stringBuffer.append("<a href=\"" +
                         "https://www.bilibili.com/video/BV13F41147o2?spm_id_from=333.999.0.0" +
@@ -384,7 +386,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append("\n");
                 stringBuffer.append("\n");
                 stringBuffer.append("<a href=\"" +
-                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484001&idx=1&sn=d8ddce71357f8069bfbf4f3fd8c22a8f&chksm=c334fbb6f44372a05caa6ab5d2cdf054bffbf084cf0ab9861765ef14df63f6ec1be5b5f26ac1&token=1140627249&lang=zh_CN#rd" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247484163&idx=1&sn=6fc27346ccb728315f694cfaab1ecbc0&chksm=c334fad4f44373c22fb232f3674b3514e8048bee87eab24076732f60394d94aaa7b991bec77c#rd" +
                         "\">使用教程</a>");
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
