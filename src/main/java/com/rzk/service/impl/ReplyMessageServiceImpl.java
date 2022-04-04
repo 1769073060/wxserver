@@ -137,19 +137,63 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             return textMessage;
         }
         ////////////////////////////////////////////////////////////以上是作为提示用户输入
+        //黑苹果
+        if (msg.equals("黑苹果") || msg.equals("黑苹果镜像") || msg.equals("ios镜像") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "黑苹果镜像"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "黑苹果镜像解锁工具"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //Office自定义安装工具
+        if (msg.equals("Office2021") || msg.equals("office2021") || msg.equals("office2020")|| msg.equals("office2019") || msg.equals("office2022") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Office自定义安装工具蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Office自定义安装工具百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
         //Office自定义安装工具
         if (msg.equals("Office自定义安装工具") || msg.equals("Office安装工具") || msg.equals("Office安装组件")|| msg.equals("Office组件") || msg.equals("Office自定义组件安装工具") ) {
             wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "Office自定义安装工具蓝奏云"));
             wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Office自定义安装工具百度云"));
             if (wxResourceLzy != null && wxResourceBdy != null) {
                 stringBuffer.append(wxResourceLzy.getFileName() + "\n");
-                stringBuffer.append("教程链接:");
+                stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceLzy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
                 stringBuffer.append("\n");
                 stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
-                stringBuffer.append("教程链接:");
+                stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceBdy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceBdy.getFetchCode());
@@ -165,13 +209,13 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "Captura百度云"));
             if (wxResourceLzy != null && wxResourceBdy != null) {
                 stringBuffer.append(wxResourceLzy.getFileName() + "\n");
-                stringBuffer.append("教程链接:");
+                stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceLzy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
                 stringBuffer.append("\n");
                 stringBuffer.append("备用地址 " + wxResourceBdy.getFileName() + "\n");
-                stringBuffer.append("教程链接:");
+                stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceBdy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceBdy.getFetchCode());
