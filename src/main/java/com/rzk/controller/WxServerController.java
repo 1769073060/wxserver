@@ -3,7 +3,6 @@ package com.rzk.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.rzk.consts.WxConsts;
 import com.rzk.pojo.*;
 import com.rzk.service.IWxResourceService;
 import com.rzk.service.IWxService;
