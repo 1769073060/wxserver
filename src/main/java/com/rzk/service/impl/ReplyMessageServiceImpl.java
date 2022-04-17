@@ -47,6 +47,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         QueryWrapper<WxResource> queryWrapperRes = new QueryWrapper();
         WxResource wxResourceLzy = null;
         WxResource wxResourceBdy = null;
+        WxResource wxResourceTyy = null;
         StringBuffer stringBuffer = new StringBuffer();
         TextMessage textMessage = null;
         ImageMessage imageMessage = null;
@@ -137,6 +138,73 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             return textMessage;
         }
         ////////////////////////////////////////////////////////////以上是作为提示用户输入
+        if (msg.equals("win10家庭版激活码") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "win10家庭版激活码"));
+
+            if (wxResourceLzy != null  ) {
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("\n");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("win10激活码") || msg.equals("win激活码") || msg.equals("windows激活码") ) {
+            stringBuffer.append("可回复：\n");
+            stringBuffer.append("win10家庭版激活码\n");
+            stringBuffer.append("获取");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+
+            return textMessage;
+        }
+        if (msg.equals("win10") ) {
+            stringBuffer.append("你是在找win10激活码吗：\n");
+            stringBuffer.append("可输入\n");
+            stringBuffer.append("win10家庭版激活码\n");
+            stringBuffer.append("获取");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+
+            return textMessage;
+        }
+        if (msg.equals("iauto") || msg.equals("iAuto") || msg.equals("IAuto") ) {
+            wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "IAuto(天翼云)"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "IAuto(百度云)"));
+            if (wxResourceTyy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceTyy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceTyy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //小型ps
+        if (msg.equals("Pinta") || msg.equals("pinta") || msg.equals("PINTA") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "pinta"));
+
+            if (wxResourceLzy != null  ) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
         //黑苹果
         if (msg.equals("黑苹果") || msg.equals("黑苹果镜像") || msg.equals("ios镜像") ) {
             wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "黑苹果镜像"));
