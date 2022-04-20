@@ -6,6 +6,7 @@ import com.rzk.service.IReplyMessageService;
 import com.rzk.service.ITbTaoZheKouMessageService;
 import com.rzk.service.IWxService;
 import com.rzk.util.BeanToXml;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

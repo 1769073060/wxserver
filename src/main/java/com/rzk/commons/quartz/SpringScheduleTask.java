@@ -1,6 +1,7 @@
 package com.rzk.commons.quartz;
 
 import com.rzk.controller.WxServerController;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
  * @CreateTime : 14/2/2022 上午3:28
  * @Version : v1.0
  */
+
 @Component
 @EnableScheduling
 public class SpringScheduleTask {

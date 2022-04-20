@@ -6,6 +6,7 @@ import com.rzk.consts.WxResourcesConsts;
 import com.rzk.pojo.*;
 import com.rzk.service.IReplyMessageService;
 import com.rzk.service.IWxResourceService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -34,6 +35,7 @@ import java.util.Map;
  * @CreateTime : 24/1/2022 上午1:50
  * @Version : v1.0
  */
+
 @Service
 public class ReplyMessageServiceImpl implements IReplyMessageService {
 
@@ -167,15 +169,51 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
             return textMessage;
         }
-        if (msg.equals("iauto") || msg.equals("iAuto") || msg.equals("IAuto") ) {
-            wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "IAuto(天翼云)"));
-            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "IAuto(百度云)"));
+        if (msg.equals("idea开发工具")  || msg.equals("idea")) {
+            stringBuffer.append("你是在找idea开发工具吗：\n");
+            stringBuffer.append("可输入\n");
+            stringBuffer.append("IDEA2021\n");
+            stringBuffer.append("获取");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+
+            return textMessage;
+        }
+        if (msg.equals("IDEA2021") || msg.equals("Idea2021") || msg.equals("idea2021") ) {
+            wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "idea2021天翼云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2021百度云"));
+            wxResourceLzy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2021下载地址"));
+
             if (wxResourceTyy != null && wxResourceBdy != null) {
                 stringBuffer.append(wxResourceTyy.getFileName() + "\n");
                 stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceTyy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
-                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append(wxResourceTyy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("idea2021下载地址:"+wxResourceLzy.getUrl());
+
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //流程工具
+        if (msg.equals("iauto") || msg.equals("iAuto") || msg.equals("IAuto") || msg.equals("Iauto")) {
+            wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "IAuto天翼云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "IAuto百度云"));
+            if (wxResourceTyy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceTyy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceTyy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceTyy.getFetchCode() + "\n");
                 stringBuffer.append("\n");
                 stringBuffer.append(wxResourceBdy.getFileName() + "\n");
                 stringBuffer.append("链接:");

@@ -1,6 +1,6 @@
 package com.rzk.commons.http;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,6 +16,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,9 +25,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
+
 public class HttpUtils {
 
+    private static Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
     public static String doGetRequest(String url) {
         String result = "";
@@ -84,15 +87,15 @@ public class HttpUtils {
             stringEntity.setContentEncoding(HttpConstant.UTF8_ENCODE);
             stringEntity.setContentType(HttpConstant.APPLICATION_JSON);
             httpPost.setEntity(stringEntity);
-            log.info("请求{}接口的参数为{}",url,jsonParam);
+            logger.info("请求{}接口的参数为{}",url,jsonParam);
             //执行发送，获取相应结果
             httpResponse = httpClient.execute(httpPost);
             httpEntity= httpResponse.getEntity();
             result = EntityUtils.toString(httpEntity);
         } catch (Exception e) {
-            log.error("请求{}接口出现异常",url,e);
+            logger.error("请求{}接口出现异常",url,e);
             if (reSend > 0) {
-                log.info("请求{}出现异常:{}，进行重发。进行第{}次重发",url,e.getMessage(),(HttpConstant.REQ_TIMES-reSend +1));
+                logger.info("请求{}出现异常:{}，进行重发。进行第{}次重发",url,e.getMessage(),(HttpConstant.REQ_TIMES-reSend +1));
                 result = sendPostByJson(url, jsonParam, reSend - 1);
                 if (result != null && !"".equals(result)) {
                     return result;
@@ -102,12 +105,12 @@ public class HttpUtils {
             try {
                 EntityUtils.consume(httpEntity);
             } catch (IOException e) {
-                log.error("http请求释放资源异常",e);
+                logger.error("http请求释放资源异常",e);
             }
         }
         //请求接口的响应时间
         endTime=System.currentTimeMillis();
-        log.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒",url,result,(endTime-startTime));
+        logger.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒",url,result,(endTime-startTime));
         return result;
 
     }
@@ -149,15 +152,15 @@ public class HttpUtils {
             }
             entity = new UrlEncodedFormEntity(list,HttpConstant.UTF8_ENCODE);
             httpPost.setEntity(entity);
-            log.info("请求{}接口的参数为{}",url,map);
+            logger.info("请求{}接口的参数为{}",url,map);
             //执行发送，获取相应结果
             httpResponse = httpClient.execute(httpPost);
             httpEntity= httpResponse.getEntity();
             result = EntityUtils.toString(httpEntity);
         } catch (Exception e) {
-            log.error("请求{}接口出现异常",url,e);
+            logger.error("请求{}接口出现异常",url,e);
             if (reSend > 0) {
-                log.info("请求{}出现异常:{}，进行重发。进行第{}次重发",url,e.getMessage(),(HttpConstant.REQ_TIMES-reSend +1));
+                logger.info("请求{}出现异常:{}，进行重发。进行第{}次重发",url,e.getMessage(),(HttpConstant.REQ_TIMES-reSend +1));
                 result = sendPostByForm(url, map, reSend - 1);
                 if (result != null && !"".equals(result)) {
                     return result;
@@ -167,12 +170,12 @@ public class HttpUtils {
             try {
                 EntityUtils.consume(httpEntity);
             } catch (IOException e) {
-                log.error("http请求释放资源异常",e);
+                logger.error("http请求释放资源异常",e);
             }
         }
         //请求接口的响应时间
         endTime=System.currentTimeMillis();
-        log.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒",url,result,(endTime-startTime));
+        logger.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒",url,result,(endTime-startTime));
         return result;
 
     }
@@ -203,15 +206,15 @@ public class HttpUtils {
             stringEntity.setContentEncoding(HttpConstant.UTF8_ENCODE);
             stringEntity.setContentType(HttpConstant.TEXT_XML);
             httpPost.setEntity(stringEntity);
-            log.info("请求{}接口的参数为{}", url, xmlParam);
+            logger.info("请求{}接口的参数为{}", url, xmlParam);
             //执行发送，获取相应结果
             httpResponse = httpClient.execute(httpPost);
             httpEntity = httpResponse.getEntity();
             result = EntityUtils.toString(httpEntity,HttpConstant.UTF8_ENCODE);
         } catch (Exception e) {
-            log.error("请求{}接口出现异常", url, e);
+            logger.error("请求{}接口出现异常", url, e);
             if (reSend > 0) {
-                log.info("请求{}出现异常:{}，进行重发。进行第{}次重发", url, e.getMessage(), (HttpConstant.REQ_TIMES - reSend + 1));
+                logger.info("请求{}出现异常:{}，进行重发。进行第{}次重发", url, e.getMessage(), (HttpConstant.REQ_TIMES - reSend + 1));
                 result = sendPostByJson(url, xmlParam, reSend - 1);
                 if (result != null && !"".equals(result)) {
                     return result;
@@ -221,11 +224,11 @@ public class HttpUtils {
             try {
                 EntityUtils.consume(httpEntity);
             } catch (IOException e) {
-                log.error("http请求释放资源异常", e);
+                logger.error("http请求释放资源异常", e);
             }
             //请求接口的响应时间
             endTime = System.currentTimeMillis();
-            log.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒", url, result, (endTime - startTime));
+            logger.info("请求{}接口的响应报文内容为{},本次请求API接口的响应时间为:{}毫秒", url, result, (endTime - startTime));
             return result;
         }
 

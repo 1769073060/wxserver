@@ -1,6 +1,7 @@
 package com.rzk.util;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +19,7 @@ import java.io.StringWriter;
  * @CreateTime : 24/1/2022 上午1:43
  * @Version : v1.0
  */
+
 public class BeanToXml {
     private static Logger logger = LoggerFactory.getLogger(BeanToXml.class);
 

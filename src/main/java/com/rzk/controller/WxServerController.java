@@ -10,6 +10,7 @@ import com.rzk.util.HttpClient;
 import com.rzk.util.HttpConstant;
 import com.rzk.util.MsgUtil;
 import com.rzk.util.SignUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -244,6 +245,8 @@ public class WxServerController {
 
     @GetMapping(value = "accessToken")
     public String getAccessToken(){
+        logger.info("accessToken{}:");
+
         Token token = new Token();
         //如果不等于空 或者小于600秒
         if (redisTemplate.getExpire("expires_in")<600||redisTemplate.getExpire("expires_in")==null){

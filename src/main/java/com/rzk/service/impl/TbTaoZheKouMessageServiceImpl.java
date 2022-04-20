@@ -7,6 +7,7 @@ import com.rzk.pojo.BaseMessage;
 import com.rzk.pojo.TextMessage;
 import com.rzk.service.ITbTaoZheKouMessageService;
 import com.rzk.util.HttpClient;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.Map;
  * @CreateTime : 2022/2/8 13:40
  * @Version : 1.0.0
  */
+
 @Service
 public class TbTaoZheKouMessageServiceImpl implements ITbTaoZheKouMessageService {
 
