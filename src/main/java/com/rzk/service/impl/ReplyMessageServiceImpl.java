@@ -47,6 +47,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
     public BaseMessage replyTextMessage(Map<String, String> requestMap) {
         QueryWrapper<WxResource> queryWrapper = new QueryWrapper();
         QueryWrapper<WxResource> queryWrapperRes = new QueryWrapper();
+        QueryWrapper<WxResource> queryWrapperUrl = new QueryWrapper();
         WxResource wxResourceLzy = null;
         WxResource wxResourceBdy = null;
         WxResource wxResourceTyy = null;
@@ -180,10 +181,16 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         }
         if (msg.equals("IDEA2021") || msg.equals("Idea2021") || msg.equals("idea2021") ) {
             wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "idea2021天翼云"));
-            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2021百度云"));
-            wxResourceLzy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2021下载地址"));
+            System.out.println(wxResourceTyy);
 
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2021百度云"));
+            System.out.println(wxResourceBdy);
+
+            wxResourceLzy = iWxResourceService.getOne(queryWrapperUrl.eq("file_name", "idea2021下载地址"));
+            System.out.println(wxResourceLzy);
             if (wxResourceTyy != null && wxResourceBdy != null) {
+                System.out.println(wxResourceLzy);
+
                 stringBuffer.append(wxResourceTyy.getFileName() + "\n");
                 stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceTyy.getUrl() + "\n");
