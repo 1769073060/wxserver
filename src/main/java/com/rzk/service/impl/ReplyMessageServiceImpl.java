@@ -179,6 +179,16 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
             return textMessage;
         }
+        //win11
+        if ( msg.equals("win11") || msg.equals("windows11") || msg.equals("Windows11")) {
+            stringBuffer.append("Windows11迅雷下载链接:");
+            stringBuffer.append("\n");
+            stringBuffer.append("magnet:?xt=urn:btih:d10180a7b9c331d73badfad18b77418ba754252c&dn=zh-cn_windows_11_consumer_editions_updated_april_2022_x64_dvd_1f8b4956.iso&xl=5741033472");
+            stringBuffer.append("\n");
+            stringBuffer.append("打开迅雷软件复制以上地址,即可下载");
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            return textMessage;
+        }
         //墨墨背单词
         if ( msg.equals("墨墨背单词") || msg.equals("墨墨背单词破解版") || msg.equals("墨墨背单词app")) {
             WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "墨墨背单词百度云"));
