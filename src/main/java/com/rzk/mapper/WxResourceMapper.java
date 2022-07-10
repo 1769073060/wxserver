@@ -2,6 +2,7 @@ package com.rzk.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rzk.pojo.WxResource;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
