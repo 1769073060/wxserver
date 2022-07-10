@@ -179,6 +179,21 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
             return textMessage;
         }
+        //思维导图
+        if (msg.equals("Xmind2022") || msg.equals("XMind2022") || msg.equals("xmind2022")) {
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "XMind2022"));
+            if (wxResourceBdy != null) {
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
         //win11
         if ( msg.equals("win11") || msg.equals("windows11") || msg.equals("Windows11")) {
             stringBuffer.append("Windows11迅雷下载链接:");
@@ -189,15 +204,73 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
             return textMessage;
         }
+        //DesktopGoose
+        if ( msg.equals("7-Zip") || msg.equals("7-zip")|| msg.equals("7zip") || msg.equals("7_zip")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "7-Zip"));
+            if (wxResourceLzy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //DesktopGoose
+        if ( msg.equals("DesktopGoose") || msg.equals("desktopgoose")|| msg.equals("桌面宠物")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "DesktopGoose"));
+            if (wxResourceLzy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //RustDesk远程连接
+        if ( msg.equals("RustDesk") || msg.equals("rustdesk")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "RustDesk"));
+            if (wxResourceLzy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl());
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //抖音特效软件
+        if ( msg.equals("像塑") || msg.equals("抖音特效软件")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "像塑"));
+            if (wxResourceLzy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
         //墨墨背单词
         if ( msg.equals("墨墨背单词") || msg.equals("墨墨背单词破解版") || msg.equals("墨墨背单词app")) {
-            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", "墨墨背单词百度云"));
-            if (wxResource != null) {
-                stringBuffer.append(wxResource.getFileName() + "\n");
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "墨墨背单词百度云"));
+            if (wxResourceLzy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
                 stringBuffer.append("链接:");
-                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
                 stringBuffer.append("提取码:");
-                stringBuffer.append(wxResource.getFetchCode());
+                stringBuffer.append(wxResourceLzy.getFetchCode());
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
