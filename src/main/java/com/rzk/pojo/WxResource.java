@@ -71,5 +71,6 @@ public class WxResource implements Serializable {
     @ApiModelProperty(value = "下载源:1.百度云,2蓝奏云")
     private String downloadSource;
 
-
+    @ApiModelProperty(value = "微信文章地址")
+    private String articleAddresses;
 }
