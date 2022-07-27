@@ -2,8 +2,10 @@ package com.rzk.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rzk.pojo.WpOptions;
+import com.rzk.pojo.WxResource;
 import com.rzk.service.IRzkVerificationCodeService;
 import com.rzk.service.IWpOptionService;
+import com.rzk.service.IWxResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +23,13 @@ public class RzkVerificationCodeServiceImpl implements IRzkVerificationCodeServi
     private RedisTemplate<String,Object> redisTemplate;
     @Resource
     private WpOptionService wpOptionService;
+    @Resource
+    private IWxResourceService wxResourceService;
 
     @Override
     public String verificationCode() {
         QueryWrapper queryWrapper = new QueryWrapper<WpOptions>();
+        QueryWrapper wxQueryWrapper = new QueryWrapper<WpOptions>();
         //判断是否为空
         if (redisTemplate.getExpire("huoduan_wechatfans_expire")<60||redisTemplate.getExpire("huoduan_wechatfans_expire")==null) {
             //生成6位数的验证码
@@ -42,8 +47,13 @@ public class RzkVerificationCodeServiceImpl implements IRzkVerificationCodeServi
 
             wpOptions.setOptionValue(wechatFans);
             wpOptionService.updateById(wpOptions);
+            wxQueryWrapper.eq("file_name", "验证码");
+            WxResource wxResource = wxResourceService.getOne(wxQueryWrapper);
+            wxResource.setContent(s1);
+            wxResourceService.updateById(wxResource);
+
             redisTemplate.opsForValue().set("huoduan_wechatfans",verification);
-            redisTemplate.opsForValue().set("huoduan_wechatfans_expire",verification,7200, TimeUnit.SECONDS);
+            redisTemplate.opsForValue().set("huoduan_wechatfans_expire",verification,300, TimeUnit.SECONDS);
         }
         String wechatfans = redisTemplate.opsForValue().get("huoduan_wechatfans").toString();
         Long wechatfans_expire = redisTemplate.getExpire("huoduan_wechatfans_expire");
