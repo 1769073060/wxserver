@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.rzk.pojo.*;
+import com.rzk.service.IRzkVerificationCodeService;
 import com.rzk.service.IWxResourceService;
 import com.rzk.service.IWxService;
 import com.rzk.util.HttpClient;
@@ -271,6 +272,22 @@ public class WxServerController {
 
         return token.getAccessToken();
     }
+
+
+
+    @Resource
+    private IRzkVerificationCodeService iRzkVerificationCodeService;
+    @GetMapping(value = "test1")
+    public String test1(){
+
+
+
+
+        String verificationCode = iRzkVerificationCodeService.verificationCode();
+        System.out.println(verificationCode);
+        return verificationCode;
+    }
+
     @Resource
     private IWxResourceService iWxResourceService;
     @GetMapping(value = "test")

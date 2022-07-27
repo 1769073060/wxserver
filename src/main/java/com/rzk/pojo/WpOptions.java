@@ -22,7 +22,7 @@ public class WpOptions {
     /**
      * 
      */
-	@TableId(value = "id", type = IdType.AUTO)
+	@TableId(value = "option_id", type = IdType.AUTO)
 	private Long optionId;
     /**
      * 

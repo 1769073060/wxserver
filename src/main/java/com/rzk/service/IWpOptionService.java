@@ -5,5 +5,5 @@ import com.rzk.pojo.WpOptions;
 import org.springframework.stereotype.Service;
 
 
-public interface WpOptionService extends IService<WpOptions> {
+public interface IWpOptionService extends IService<WpOptions> {
 }
