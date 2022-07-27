@@ -73,4 +73,7 @@ public class WxResource implements Serializable {
 
     @ApiModelProperty(value = "微信文章地址")
     private String articleAddresses;
+
+    @ApiModelProperty(value = "超大字段")
+    private String content;
 }

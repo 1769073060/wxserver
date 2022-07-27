@@ -23,9 +23,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @PackageName : com.rzk.service
@@ -173,10 +171,54 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
         if (msg.equals("idea开发工具")  || msg.equals("idea")) {
             stringBuffer.append("你是在找idea开发工具吗：\n");
             stringBuffer.append("可输入\n");
-            stringBuffer.append("IDEA2021\n");
+            stringBuffer.append("IDEA2021\n")
+            ;stringBuffer.append("IDEA2022\n");
             stringBuffer.append("获取");
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
 
+            return textMessage;
+        }
+        if (msg.equals("idea激活码") ) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "idea激活码"));
+
+            stringBuffer.append(wxResourceLzy.getContent());
+
+            textMessage = new TextMessage(requestMap, stringBuffer.toString());
+
+            return textMessage;
+        }
+        //思维导图便携版
+        if (msg.equals("微信验证码") || msg.equals("验证码")) {
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "验证码"));
+            if (wxResourceBdy != null) {
+                stringBuffer.append("微信验证码:");
+                stringBuffer.append(wxResourceBdy.getContent());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //数据库管理工具
+        if (msg.equals("navicat12") || msg.equals("Navicat12")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "navicat12蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "navicat12百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
             return textMessage;
         }
         //桌面日程倒计时应用
@@ -190,6 +232,21 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
                 stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //思维导图便携版
+        if (msg.equals("Xmind2022便携版") || msg.equals("XMind2022便携版") || msg.equals("xmind2022便携版")) {
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "XMind2022便携版"));
+            if (wxResourceBdy != null) {
                 stringBuffer.append(wxResourceBdy.getFileName() + "\n");
                 stringBuffer.append("链接:");
                 stringBuffer.append(wxResourceBdy.getUrl() + "\n");
@@ -310,6 +367,38 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                 stringBuffer.append("提取码:");
                 stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
                 stringBuffer.append("\n");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        if (msg.equals("IDEA2022") || msg.equals("Idea2022") || msg.equals("idea2022") ) {
+            wxResourceTyy = iWxResourceService.getOne(queryWrapper.eq("file_name", "idea2022天翼云"));
+            System.out.println(wxResourceTyy);
+
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "idea2022百度云"));
+            System.out.println(wxResourceBdy);
+
+            wxResourceLzy = iWxResourceService.getOne(queryWrapperUrl.eq("file_name", "idea2022下载地址"));
+            System.out.println(wxResourceLzy);
+            if (wxResourceTyy != null && wxResourceBdy != null) {
+                System.out.println(wxResourceLzy);
+
+                stringBuffer.append(wxResourceTyy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceTyy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceTyy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                stringBuffer.append("\n");
+                stringBuffer.append("idea2022下载地址:"+wxResourceLzy.getUrl());
+
                 textMessage = new TextMessage(requestMap, stringBuffer.toString());
             } else {
                 textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
@@ -2651,7 +2740,51 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
             logger.info("imageMessage{}:" + imageMessage);
             return imageMessage;
         }
+        if (msg.equals("过年倒计时") || msg.equals("元旦倒计时") || msg.equals("国庆倒计时") || msg.equals("倒计时")) {
+            // 设置日期2012-12-21
+            Calendar c = Calendar.getInstance();
+            c.set(2023, 0, 0, 0, 0, 0);//元旦
+            c.set(2022, 9, 0, 0, 0, 0);//元旦
+            // 单独设置年、月、日、小时、分钟、秒
+//        c.set(Calendar.YEAR, 2023);
+//        c.set(Calendar.MONTH, Calendar.JANUARY); // 0 表示1月，11 表示12月
+//        c.set(Calendar.DAY_OF_MONTH, 0);
+//        c.set(Calendar.HOUR_OF_DAY, 0);
+//        c.set(Calendar.MINUTE, 0);
+//        c.set(Calendar.SECOND, 0);
 
+            // 获取2012-12-21 0:0:0时间点对应的毫秒数
+            long endTime = c.getTimeInMillis();
+            // 获取系统当前时间
+            Date now = new Date();
+            // 获取当前时间点对应的毫秒数
+            long currentTime = now.getTime();
+
+            // 计算两个时间点相差的秒数
+            long seconds = (endTime - currentTime) / 1000;
+
+//        while (true) {
+            long days = seconds / (3600 * 24);
+            long h = seconds % (3600 * 24) / 3600;
+            long m = seconds % (3600 * 24) % 3600 / 60;
+            long s = seconds % (3600 * 24) % 3600 % 60;
+            System.out.println("离2023年元旦还剩： " + days + "天" + h + "小时" + m + "分" + s + "秒");
+            stringBuffer.append("离国庆节还剩： " + days + "天" + h + "小时" + m + "分" + s + "秒"+"\n");
+            stringBuffer.append("链接:");
+            stringBuffer.append("\n");
+            stringBuffer.append("提取码:");
+
+
+//            seconds--;
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
+            logger.info("imageMessage{}:" + imageMessage);
+            return imageMessage;
+        }
         else {
             stringBuffer.append("找不到该资源，关键字输入未匹配到或还未添加该资源");
             stringBuffer.append(",可参考：");
@@ -2759,7 +2892,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
                     "\">资源目录</a>");
             logger.info("进入关注{}:" + stringBuffer.toString());
             stringBuffer.append("快捷回复方式：\n" +
-                    "比如发送：Adobe，office，录屏，重装系统(待更新系列)，小说，XMind(待更新系列)，\n" +
+                    "比如发送：Adobe，office，录屏，重装系统(待更新系列)，小说，XMind(在更新系列)，\n" +
                     "win10激活工具(待更新系列)，Win11(待更新系列)，分流抢票神器(待更新系列)，" +
                     "等等......");
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
