@@ -85,6 +85,32 @@ public class WxServiceImpl implements IWxService {
             case WxConsts.REQ_MESSAGE_TYPE_MSG_TYPE:
                 message = iReplyMessageService.replyEventMessage(requestMap);
                 break;
+            //            // 事件推送
+//            else if (msgType.equals(WxConsts.REQ_MESSAGE_TYPE_EVENT)) {
+//                // 事件类型
+//                String eventType = (String) requestMap.get(WxConsts.Event);
+//                // 关注
+//                if (eventType.equals(WxConsts.EVENT_TYPE_SUBSCRIBE)) {
+//                    respContent = "谢谢您的关注！";
+//                    respXml = MsgUtil.sendTextMsg(requestMap, respContent);
+//                }
+//                // 取消关注
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_UNSUBSCRIBE)) {
+//                    // TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
+//                }
+//                // 扫描带参数二维码
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_SCAN)) {
+//                    // TODO 处理扫描带参数二维码事件
+//                }
+//                // 上报地理位置
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_LOCATION)) {
+//                    // TODO 处理上报地理位置事件
+//                }
+//                // 自定义菜单
+//                else if (eventType.equals(WxConsts.EVENT_TYPE_CLICK)) {
+//                    // TODO 处理菜单点击事件
+//                }
+//            }
             default:
                 break;
         }

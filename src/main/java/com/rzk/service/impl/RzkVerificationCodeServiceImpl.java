@@ -51,7 +51,7 @@ public class RzkVerificationCodeServiceImpl implements IRzkVerificationCodeServi
             wpOptionService.updateById(wpOptions);
             wxQueryWrapper.eq("file_name", "验证码");
             WxResource wxResource = wxResourceService.getOne(wxQueryWrapper);
-            wxResource.setContent(s1);
+            wxResource.setContent(String.valueOf(verification));
             wxResourceService.updateById(wxResource);
 
             redisTemplate.opsForValue().set("huoduan_wechatfans",verification);

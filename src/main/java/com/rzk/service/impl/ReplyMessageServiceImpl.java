@@ -40,6 +40,7 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
     private Logger logger = LoggerFactory.getLogger(ReplyMessageServiceImpl.class);
     @Resource
     private IWxResourceService iWxResourceService;
+    private final static String  notResourceContent = "该资源不存在,或已失效,可联系我补上该资源!";
 
 
     public BaseMessage replyTextMessage(Map<String, String> requestMap) {
@@ -185,6 +186,103 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
             textMessage = new TextMessage(requestMap, stringBuffer.toString());
 
+            return textMessage;
+        }
+        //在线翻译软件
+        if (msg.equals("CopyTranslator") || msg.equals("copytranslator")|| msg.equals("Copytranslator")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "CopyTranslator蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "CopyTranslator百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+
+        //鼠标美化工具
+        if (msg.equals("CustomCursor") || msg.equals("customcursor")|| msg.equals("Customcursor")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "CustomCursor蓝奏云"));
+            if (wxResourceLzy != null ) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //Markdown 编辑器
+        if (msg.equals("Typora") || msg.equals("typora")|| msg.equals("TYPORA")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "typora蓝奏云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "typora百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //数据库管理工具
+        if (msg.equals("Krita") || msg.equals("krita")) {
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "krita百度云"));
+            if (wxResourceBdy != null) {
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
+            return textMessage;
+        }
+        //数据库管理工具
+        if (msg.equals("wps2022") || msg.equals("WPS2022")) {
+            wxResourceLzy = iWxResourceService.getOne(queryWrapper.eq("file_name", "wps2022阿里云"));
+            wxResourceBdy = iWxResourceService.getOne(queryWrapperRes.eq("file_name", "wps2022百度云"));
+            if (wxResourceLzy != null && wxResourceBdy != null) {
+                stringBuffer.append(wxResourceLzy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceLzy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceLzy.getFetchCode() + "\n");
+                stringBuffer.append("\n");
+                stringBuffer.append(wxResourceBdy.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResourceBdy.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResourceBdy.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                textMessage = new TextMessage(requestMap, "该资源不存在,或已失效,可联系我补上该资源!");
+            }
             return textMessage;
         }
         //思维导图便携版
@@ -2784,6 +2882,27 @@ public class ReplyMessageServiceImpl implements IReplyMessageService {
 
             logger.info("imageMessage{}:" + imageMessage);
             return imageMessage;
+        }
+        if (msg!=null && !"".equals(msg)) {
+            WxResource wxResource = iWxResourceService.getOne(queryWrapper.eq("file_name", msg));
+            if (wxResource != null) {
+                stringBuffer.append(wxResource.getFileName() + "\n");
+                stringBuffer.append("链接:");
+                stringBuffer.append(wxResource.getUrl() + "\n");
+                stringBuffer.append("提取码:");
+                stringBuffer.append(wxResource.getFetchCode());
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+            } else {
+                stringBuffer.append("找不到该资源，关键字输入未匹配到或还未添加该资源");
+                stringBuffer.append(",可参考：");
+                stringBuffer.append("<a href=\"" +
+                        "https://mp.weixin.qq.com/s?__biz=Mzk0MzMyMTI3Mg==&mid=2247483767&idx=1&sn=2188dbebf30904a4725388b37471700e&chksm=c334f8a0f44371b6193b1f80de386cc11007bd5e4fb03c9657932658ff47ee2975a5ac2a5426#rd" +
+                        "\">资源目录</a>");
+
+                textMessage = new TextMessage(requestMap, stringBuffer.toString());
+                logger.info("返回回复文本消息" + textMessage);
+            }
+            return textMessage;
         }
         else {
             stringBuffer.append("找不到该资源，关键字输入未匹配到或还未添加该资源");
